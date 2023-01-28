@@ -1,0 +1,15 @@
+/* 主题定制 */
+.t-rate {
+  --td-rate-selected-color: #ffc51c;
+  --td-rate-unselected-color: #ddd;
+}
+
+.t-input {
+  --td-input-placeholder-text-color: #bbbbbb;
+  --td-input-text-color: #333333;
+}
+
+.t-tab-bar {
+  --td-tab-bar-item-color: #bbb;
+  --td-tab-bar-item-active-color: #333;
+}
