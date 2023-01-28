@@ -1,8 +1,8 @@
 const userInfo = {
   avatarUrl:
     'https://we-retail-static-1300977798.cos.ap-guangzhou.myqcloud.com/retail-ui/components-exp/avatar/avatar-1.jpg',
-  nickName: 'TDesign 🌟',
-  phoneNumber: '13438358888',
+  nickName: 'Daes 🌟',
+  phoneNumber: '17723575366',
   gender: 2,
 };
 const countsData = [
