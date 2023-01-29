@@ -102,3 +102,7 @@ page {
 .loading-text {
   color: #b9b9b9 !important;
 }
+
+.move-text {
+  color: #ccc;
+}

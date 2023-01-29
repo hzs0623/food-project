@@ -1,13 +1,11 @@
 import { fetchHome } from '../../services/home/home';
 import { fetchGoodsList } from '../../services/good/fetchGoods';
 import Toast from 'tdesign-miniprogram/toast/index';
-import { I18n } from '../../i18n/core/index';
+import { I18nPage } from '../../i18n/core/index';
 
 const app = getApp();
-console.log(app.globalData.reverse);
 
-Page({
-  behaviors: [I18n],
+I18nPage({
   data: {
     imgSrcs: [],
     tabList: [],
@@ -19,6 +17,7 @@ Page({
     duration: 500,
     interval: 5000,
     navigation: { type: 'dots' },
+    reverse: false,
   },
 
   goodListPagination: {
@@ -32,6 +31,10 @@ Page({
 
   onShow() {
     this.getTabBar().init();
+
+    this.setData({
+      reverse: app.globalData.reverse,
+    });
   },
 
   onLoad() {
@@ -131,6 +134,18 @@ Page({
     const { index: promotionID = 0 } = detail || {};
     wx.navigateTo({
       url: `/pages/promotion-detail/index?promotion_id=${promotionID}`,
+    });
+  },
+
+  moveClick() {
+    // 切换多语言
+    app.globalData.reverse = !app.globalData.reverse;
+    const lang = app.globalData.reverse ? 'en' : 'zh';
+    console.log(this.t('mine'));
+    this.setLocale(lang);
+    console.log(this.t('mine'));
+    this.setData({
+      reverse: app.globalData.reverse,
     });
   },
 });

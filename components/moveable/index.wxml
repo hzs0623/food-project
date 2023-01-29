@@ -1,0 +1,14 @@
+<view>
+	<movable-area class="movable-area">
+		<movable-view
+		 class="movable-view" 
+		 direction="all" 
+		 bindtap="onClick" 
+		 x="19999" 
+		 vtouchmove="vtouchmove"
+		 out-of-bounds
+		 >
+			<slot></slot>
+		</movable-view>
+	</movable-area>
+</view>

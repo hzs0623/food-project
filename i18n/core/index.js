@@ -13,6 +13,7 @@ class I18nRuntimeBase {
   //设置语言
   setLang(lang) {
     if (this.lang === lang) return;
+    this.lang = lang;
     try {
       wx.setStorageSync(this.strageKey, lang);
       return lang;
@@ -82,6 +83,24 @@ export const I18n = Behavior(
     return behaviorHooks;
   })(),
 );
+
+export const I18nPage = (pageObject = {}) => {
+  const hooks = {
+    t(key) {
+      if (!innerGlobals.i18nInstance) return;
+      return innerGlobals.i18nInstance.t(key);
+    },
+    setLocale(locale) {
+      if (!innerGlobals.i18nInstance) return;
+      innerGlobals.i18nInstance.setLang(locale);
+    },
+    getLocale() {
+      if (!innerGlobals.i18nInstance) return;
+      return innerGlobals.i18nInstance.getLang(locale);
+    },
+  };
+  return Page(Object.assign({}, pageObject, hooks));
+};
 
 export const getI18nInstance = () => {
   return innerGlobals.i18nInstance;

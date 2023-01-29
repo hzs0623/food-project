@@ -67,4 +67,9 @@
 	/>
 	<load-more list-is-empty="{{!goodsList.length}}" status="{{goodsListLoadStatus}}" bind:retry="onReTry" />
 	<t-toast id="t-toast" />
+
+	<t-moveable bind:onClick="moveClick">
+		{{ !reverse ? '中' : '维' }}
+		<text class="move-text">/	{{ reverse ? '中' : '维' }}</text>
+	</t-moveable>
 </view>
