@@ -1,0 +1,16 @@
+<view>
+	<movable-area class="movable-area">
+		<movable-view
+		 class="movable-view" 
+		 direction="all" 
+		 bindtap="onClick" 
+		 x="{{ reverse ? 0 : 1999 }}" 
+		 vtouchmove="vtouchmove"
+		 out-of-bounds
+		 animation="{{ false }}"
+		 >
+		{{ !reverse ? '中' : '维' }}
+		<text class="move-text">/	{{ reverse ? '中' : '维' }}</text>
+		</movable-view>
+	</movable-area>
+</view>

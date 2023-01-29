@@ -1,14 +1,15 @@
-<view style="text-align: center" wx:if="{{pageLoading}}">
-	<t-loading
-	  theme="circular"
-	  size="40rpx"
-	  loading
-	  t-class-indicator="t-class-indicator"
-	>
-		<span slot="text" class="loading-text">加载中...</span>
-	</t-loading>
-</view>
-<view class="home-page-header">
+<view class="{{ reverse ? 'home-page-ar' : 'home-page'}}">
+	<view style="text-align: center" wx:if="{{pageLoading}}">
+		<t-loading
+			theme="circular"
+			size="40rpx"
+			loading
+			t-class-indicator="t-class-indicator"
+		>
+			<span slot="text" class="loading-text">加载中...</span>
+		</t-loading>
+	</view>
+
 	<view class="search" bind:tap="navToSearchPage">
 		<t-search
 		  t-class-input="t-search__input"
@@ -26,38 +27,24 @@
 			/>
 		</t-search>
 	</view>
-	<view class="swiper-wrap">
-		<t-swiper
-		  wx:if="{{imgSrcs.length > 0}}"
-		  current="{{current}}"
-		  autoplay="{{autoplay}}"
-		  duration="{{duration}}"
-		  interval="{{interval}}"
-		  navigation="{{navigation}}"
-		>
-			<t-swiper-item wx:for="{{imgSrcs}}" wx:key="index">
-				<t-image src="{{item.img}}" t-class="t-image__swiper" bind:tap="navToActivityDetail" />
-			</t-swiper-item>
-		</t-swiper>
-	</view>
-</view>
-<view class="home-page-container">
-	<t-tabs
-	  t-class="t-tabs"
-	  t-class-active="tabs-external__active"
-		t-class-item="tabs-external__item"
-	  t-class-track="tabs-external__track"
-	  defaultValue="{{0}}"
-	  bind:change="tabChangeHandle"
+
+
+	<t-swiper
+		wx:if="{{imgSrcs.length > 0}}"
+		current="{{current}}"
+		autoplay="{{autoplay}}"
+		duration="{{duration}}"
+		interval="{{interval}}"
+		navigation="{{navigation}}"
 	>
-		<t-tab-panel
-		  wx:for="{{tabList}}"
-		  wx:for-index="index"
-		  wx:key="index"
-		  label="{{item.text}}"
-		  value="{{item.key}}"
-		/>
-	</t-tabs>
+		<t-swiper-item wx:for="{{imgSrcs}}" wx:key="index">
+			<t-image src="{{item.img}}" t-class="t-image__swiper" bind:tap="navToActivityDetail" />
+		</t-swiper-item>
+	</t-swiper>
+
+	<!-- 分类列表 -->
+	<view>{{ language.categories }}{{ language.list }}</view>
+
 	<goods-list
 	  wr-class="goods-list-container"
 	  goodsList="{{goodsList}}"
@@ -66,4 +53,6 @@
 	/>
 	<load-more list-is-empty="{{!goodsList.length}}" status="{{goodsListLoadStatus}}" bind:retry="onReTry" />
 	<t-toast id="t-toast" />
+
+	<t-moveable bind:onClick="moveClick" />
 </view>

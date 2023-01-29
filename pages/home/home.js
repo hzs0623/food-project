@@ -1,10 +1,9 @@
 import { fetchHome } from '../../services/home/home';
 import { fetchGoodsList } from '../../services/good/fetchGoods';
 import Toast from 'tdesign-miniprogram/toast/index';
-import { I18n } from '../../i18n/core/index';
+import { I18nPage } from '../../i18n/core/index';
 
-Page({
-  behaviors: [I18n],
+I18nPage({
   data: {
     imgSrcs: [],
     tabList: [],
@@ -129,5 +128,10 @@ Page({
     wx.navigateTo({
       url: `/pages/promotion-detail/index?promotion_id=${promotionID}`,
     });
+  },
+
+  // 切换多语言
+  moveClick() {
+    this.setLocale(!this.data.reverse ? 'uly' : 'zh');
   },
 });

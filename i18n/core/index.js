@@ -1,46 +1,8 @@
+import I18nRuntimeBase from './I18n';
+
 const innerGlobals = {
   i18nInstance: null,
 };
-
-class I18nRuntimeBase {
-  constructor({ locals = {}, strageKey = 'lang', defaultLang } = {}) {
-    this.strageKey = strageKey;
-    this.locals = locals;
-    this.defaultLang = defaultLang || 'zh';
-    this.lang = this.setLang(this.defaultLang);
-  }
-
-  //设置语言
-  setLang(lang) {
-    if (this.lang === lang) return;
-    try {
-      wx.setStorageSync(this.strageKey, lang);
-      return lang;
-    } catch (e) {}
-  }
-
-  //获取语言设置
-  getLang() {
-    try {
-      if (!this.lang) {
-        this.lang = wx.getStorageSync(this.strageKey);
-      }
-      return this.lang || this.defaultLang;
-    } catch (e) {}
-  }
-
-  //获取当前语言下的资源文件
-  getLanguage() {
-    const lang = this.getLang();
-    const languages = this.locals[lang] || {};
-    return languages;
-  }
-
-  t(key) {
-    const data = this.getLanguage();
-    return data[key];
-  }
-}
 
 // app.js 初始化方法
 export function initI18n({ locals, lang }) {
@@ -51,24 +13,28 @@ export function initI18n({ locals, lang }) {
   return innerGlobals.i18nInstance;
 }
 
+const commonSetLang = (that) => {
+  const app = getApp();
+  if (!app.globalData.watchLanguage) {
+    return console.warn('依赖watch没有添加');
+  }
+  app.globalData.watchLanguage((globalData) => {
+    that.setData(globalData);
+  });
+};
+
+// Compoent多语言
 export const I18n = Behavior(
   (() => {
     const behaviorHooks = {
       lifetimes: {
         attached() {
-          if (!innerGlobals.i18nInstance) return;
-          const language = innerGlobals.i18nInstance.getLanguage();
-          this.setData({
-            lang: language || {},
-          });
+          commonSetLang(this);
         },
+        // 销毁
         detached() {},
       },
       methods: {
-        t(key) {
-          if (!innerGlobals.i18nInstance) return;
-          return innerGlobals.i18nInstance.t(key);
-        },
         setLocale(locale) {
           if (!innerGlobals.i18nInstance) return;
           innerGlobals.i18nInstance.setLang(locale);
@@ -83,6 +49,35 @@ export const I18n = Behavior(
   })(),
 );
 
+// Page多语言
+export const I18nPage = (pageObject = {}) => {
+  const behaviors = [
+    Behavior({
+      // 基础库 2.9.2 开始支持
+      lifetimes: {
+        attached: function () {
+          commonSetLang(this);
+        },
+        detached: function () {},
+      },
+    }),
+  ];
+  if (pageObject.behaviors) {
+    behaviors.push(...pageObject.behaviors);
+  }
+  const hooks = {
+    behaviors,
+    setLocale(locale) {
+      innerGlobals.i18nInstance.setLang(locale);
+    },
+    getLocale() {
+      return innerGlobals.i18nInstance.getLang(locale);
+    },
+  };
+  return Page(Object.assign({}, pageObject, hooks));
+};
+
+// js多语言
 export const getI18nInstance = () => {
   return innerGlobals.i18nInstance;
 };
