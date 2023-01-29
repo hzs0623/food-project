@@ -1,8 +1,10 @@
 import { fetchHome } from '../../services/home/home';
 import { fetchGoodsList } from '../../services/good/fetchGoods';
 import Toast from 'tdesign-miniprogram/toast/index';
+import { I18n } from '../../i18n/core/index';
 
 Page({
+  behaviors: [I18n],
   data: {
     imgSrcs: [],
     tabList: [],
