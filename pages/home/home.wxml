@@ -48,6 +48,7 @@
 		t-class-item="tabs-external__item"
 	  t-class-track="tabs-external__track"
 	  defaultValue="{{0}}"
+		space-evenly="{{false}}"
 	  bind:change="tabChangeHandle"
 	>
 		<t-tab-panel
