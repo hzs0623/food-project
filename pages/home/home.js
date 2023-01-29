@@ -3,6 +3,9 @@ import { fetchGoodsList } from '../../services/good/fetchGoods';
 import Toast from 'tdesign-miniprogram/toast/index';
 import { I18n } from '../../i18n/core/index';
 
+const app = getApp();
+console.log(app.globalData.reverse);
+
 Page({
   behaviors: [I18n],
   data: {

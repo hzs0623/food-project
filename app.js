@@ -6,6 +6,9 @@ import { locals } from './i18n/language/index';
 initI18n({ locals, lang: 'zh' });
 
 App({
+  globalData: {
+    reverse: false,
+  },
   onLaunch: function () {},
   onShow: function () {
     updateManager();
