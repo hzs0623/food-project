@@ -8,7 +8,9 @@
     "lint": "eslint --cache --fix --ext .js",
     "check": "node config/eslintCheck.js",
     "less": "gulp less-autoprefix",
-    "less-ar": "gulp less-autoprefix --dir rtl"
+    "less-ar": "gulp less-autoprefix --reverse=true",
+    "css": "gulp css",
+    "build": "yarn less & yarn less-ar && yarn css"
   },
   "author": "",
   "license": "ISC",
@@ -33,11 +35,15 @@
     "eslint-plugin-prettier": "^3.1.2",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^8.0.0",
+    "gulp-concat": "^2.6.1",
     "gulp-cssnano": "^2.1.3",
     "gulp-less": "^5.0.0",
     "gulp-rename": "^2.0.0",
+    "gulp-util": "^3.0.8",
     "husky": "^4.3.0",
     "lint-staged": "^10.0.8",
-    "prettier": "^2.1.2"
+    "minimist": "^1.2.7",
+    "prettier": "^2.1.2",
+    "through2": "^4.0.2"
   }
 }
