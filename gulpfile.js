@@ -73,7 +73,6 @@ gulp.task('css', function () {
     .pipe(concat('index1.wxss')) //通过concat将css文件拼接成一个叫做style.css的文件
     .pipe(
       gulp.dest((file) => {
-        console.log(file.toString(), file.base);
         return file.base;
       }),
     );

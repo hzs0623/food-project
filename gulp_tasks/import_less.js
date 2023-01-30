@@ -14,7 +14,10 @@ module.exports = function (importNames = []) {
         importNames.forEach((src) => {
           imports = `${imports}@import "${src}";` + `\n`;
         });
-        imports += file.contents.toString();
+        if (file.contents) {
+          imports += file.contents?.toString();
+        }
+
         newFile.push({
           path: file.path,
           contents: new Buffer.from(imports),
