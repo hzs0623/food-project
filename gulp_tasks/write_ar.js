@@ -21,21 +21,25 @@ function createArSrc(str = '') {
 
 // 职责：将less文件内容 在第一个类名上加上:   -ar
 module.exports = function () {
-  let newFile = {};
+  const newFile = [];
 
   return through.obj(
     function write(file, enc, done) {
       if (file.path !== 'undefined') {
         const strs = createArSrc(file.contents.toString());
-        newFile = {
-          path: file.path,
-          contents: new Buffer.from(strs),
-        };
+        newFile.push(
+          new gutil.File({
+            path: file.path,
+            contents: new Buffer.from(strs),
+          }),
+        );
       }
       done();
     },
     function flush(done) {
-      this.push(new gutil.File(newFile));
+      newFile.forEach((file) => {
+        this.push(file);
+      });
       done();
     },
   );

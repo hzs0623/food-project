@@ -18,17 +18,18 @@ module.exports = function (importNames = []) {
           imports += file.contents?.toString();
         }
 
-        newFile.push({
-          path: file.path,
-          contents: new Buffer.from(imports),
-        });
+        newFile.push(
+          new gutil.File({
+            path: file.path,
+            contents: new Buffer.from(imports),
+          }),
+        );
       }
       done();
     },
     function flush(done) {
-      /* jshint validthis:true */
       newFile.forEach((el) => {
-        this.push(new gutil.File(el));
+        this.push(el);
       });
       done();
     },

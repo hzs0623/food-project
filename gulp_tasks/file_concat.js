@@ -1,31 +1,40 @@
 'use strict';
 
 var through = require('through2');
-var Concat = require('concat-with-sourcemaps');
+const gutil = require('gulp-util');
 
 module.exports = function (fileName) {
-  var latestFile;
-  var latestMod;
-  var concat;
+  const fileMap = {};
 
   function bufferContents(file, enc, cb) {
-    if (!latestMod || (file.stat && file.stat.mtime > latestMod)) {
-      latestFile = file;
-      latestMod = file.stat && file.stat.mtime;
-    }
-    if (!concat) {
-      concat = new Concat();
+    const path = file.path.replace(file.basename, '');
+    const item = fileMap[path];
+
+    if (item) {
+      fileMap[path] = {
+        ...item,
+        contents: `${item.contents}\n${file.contents.toString()}`,
+      };
+    } else {
+      fileMap[path] = {
+        path: file.path.replace(file.basename, fileName),
+        contents: file.contents.toString(),
+      };
     }
 
-    concat.add(file.relative, file.contents); // 将多个文件合并
     cb();
   }
 
   function endStream(cb) {
-    const joinedFile = latestFile.clone({ contents: false });
-    joinedFile.path = joinedFile.path.replace(joinedFile.basename, fileName);
-    joinedFile.contents = concat.content;
-    this.push(joinedFile);
+    Object.keys(fileMap).forEach((k) => {
+      const el = fileMap[k];
+      this.push(
+        new gutil.File({
+          path: el.path,
+          contents: new Buffer.from(el.contents),
+        }),
+      );
+    });
     cb();
   }
 
