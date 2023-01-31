@@ -1,6 +1,22 @@
 const through = require('through2');
 const gutil = require('gulp-util');
 
+function findClassNames(str) {
+  const classNames = [];
+  let startIndex;
+  for (let i = 0; i < str.length; i++) {
+    const item = str[i];
+    if (!startIndex && item === '.') {
+      startIndex = i;
+    }
+    if (typeof startIndex !== 'undefined' && item === '{') {
+      classNames.push(str.substring(startIndex, i));
+      startIndex = undefined;
+    }
+  }
+  return classNames;
+}
+
 function createArSrc(str = '') {
   let startIndex;
   let endIndex;
@@ -14,8 +30,12 @@ function createArSrc(str = '') {
       break;
     }
   }
-  const className = str.substring(startIndex, endIndex);
-  str = str.replace(className, `${className.trim()}-ar`);
+
+  const classNames = findClassNames(str);
+  classNames.forEach((name) => {
+    str = str.replace(name, `${name.trim()}-ar`);
+  });
+
   return str;
 }
 
@@ -36,6 +56,7 @@ module.exports = function () {
       }
       done();
     },
+
     function flush(done) {
       newFile.forEach((file) => {
         this.push(file);
