@@ -10,7 +10,7 @@
     "less": "gulp less-autoprefix",
     "less-ar": "gulp less-autoprefix --reverse=true",
     "css": "gulp css",
-    "build": "yarn less & yarn less-ar && yarn css"
+    "build": "yarn less & yarn less-ar && yarn css && gulp clear"
   },
   "author": "",
   "license": "ISC",
@@ -29,12 +29,14 @@
     "tslib": "^1.11.1"
   },
   "devDependencies": {
+    "concat-with-sourcemaps": "^1.1.0",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-import": "^2.20.1",
     "eslint-plugin-prettier": "^3.1.2",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^8.0.0",
+    "gulp-clean": "^0.4.0",
     "gulp-concat": "^2.6.1",
     "gulp-cssnano": "^2.1.3",
     "gulp-less": "^5.0.0",
