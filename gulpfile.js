@@ -11,7 +11,7 @@ gulp.task('less', function () {
   if (isReverse) {
     return gulp
       .src(['pages/**/*.less', 'components/**/*.less']) //待处理的目标目录下的所有less文件
-      .pipe(wariteAr())
+      .pipe(wariteAr({ suffix: '-ar', all: false }))
       .pipe(importLess(['less/global-ar.less']))
       .pipe(less())
       .pipe(
