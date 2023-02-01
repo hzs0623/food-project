@@ -36,7 +36,7 @@ Component({
 
   attached() {
     this.t('key');
-    this.getLocale(); // en-US
+    this.getLocale();
     this.setLocale('zh-CN');
   },
 });

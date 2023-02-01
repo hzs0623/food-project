@@ -17,7 +17,7 @@ I18nPage({
     duration: 500,
     interval: 5000,
     navigation: { type: 'dots' },
-    reverse: false,
+    reverse: app.globalData.reverse,
   },
 
   goodListPagination: {
@@ -31,13 +31,13 @@ I18nPage({
 
   onShow() {
     this.getTabBar().init();
-
-    this.setData({
-      reverse: app.globalData.reverse,
-    });
   },
 
   onLoad() {
+    this.setData({
+      lang: this._getLang(), // 设置到全局值， 直接获取lang即可
+    });
+
     this.init();
   },
 
@@ -137,15 +137,13 @@ I18nPage({
     });
   },
 
+  // 切换多语言
   moveClick() {
-    // 切换多语言
-    app.globalData.reverse = !app.globalData.reverse;
-    const lang = app.globalData.reverse ? 'en' : 'zh';
-    console.log(this.t('mine'));
+    const lang = !app.globalData.reverse ? 'uly' : 'zh';
     this.setLocale(lang);
-    console.log(this.t('mine'));
     this.setData({
       reverse: app.globalData.reverse,
+      lang: this._getLang(), // 设置到全局值， 直接获取lang即可
     });
   },
 });

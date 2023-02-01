@@ -1,9 +1,9 @@
 import zh from './zh-cn';
-import en from './en-us';
+import uly from './uly';
 
 export const locals = {
   zh,
-  en,
+  uly, // 维吾尔语
 };
 
 export const langKeys = Object.keys(locals);
