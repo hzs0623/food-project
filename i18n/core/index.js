@@ -20,18 +20,18 @@ export const I18n = Behavior(
       lifetimes: {
         attached() {
           if (!innerGlobals.i18nInstance) return;
-          innerGlobals.i18nInstance.updateLang(() => {
+
+          const getLang = () => {
             this.setData({
               // 设置到全局值， 直接获取lang即可
               lang: innerGlobals.i18nInstance.getLanguage(),
             });
-          });
+          };
 
-          const language = innerGlobals.i18nInstance.getLanguage();
-          this.setData({
-            // 设置到全局值， 直接获取lang即可
-            lang: language,
+          innerGlobals.i18nInstance.updateLang(() => {
+            getLang();
           });
+          getLang();
         },
         detached() {},
       },

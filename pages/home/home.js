@@ -34,10 +34,7 @@ I18nPage({
   },
 
   onLoad() {
-    this.setData({
-      lang: this._getLang(), // 设置到全局值， 直接获取lang即可
-    });
-
+    this.setData({ lang: app.globalData.lang });
     this.init();
   },
 
@@ -143,7 +140,7 @@ I18nPage({
     this.setLocale(lang);
     this.setData({
       reverse: app.globalData.reverse,
-      lang: this._getLang(), // 设置到全局值， 直接获取lang即可
+      lang: app.globalData.lang,
     });
   },
 });

@@ -8,13 +8,19 @@ const i18n = initI18n({ locals, lang: 'uly' });
 App({
   globalData: {
     reverse: false,
+    lang: {}, // 多语言信息
   },
   onLaunch: function () {
-    i18n.updateLang((lang) => {
-      this.globalData.reverse = lang === 'uly';
+    i18n.updateLang(() => {
+      this.updateLanguage();
     });
-    this.globalData.reverse = i18n.getLang() === 'uly';
+    this.updateLanguage();
   },
+  updateLanguage() {
+    this.globalData.reverse = i18n.getLang() === 'uly';
+    this.globalData.lang = i18n.getLanguage(); //根据当前系统语言获取对应文本
+  },
+
   onShow: function () {
     updateManager();
   },
