@@ -28,12 +28,16 @@ export const I18n = Behavior(
             });
           };
 
-          innerGlobals.i18nInstance.updateLang(() => {
+          const langId = innerGlobals.i18nInstance.updateLang(() => {
             getLang();
           });
+          this.setData({ langId });
           getLang();
         },
-        detached() {},
+        // 销毁
+        detached() {
+          innerGlobals.i18nInstance.detached(this.data.langId);
+        },
       },
       methods: {
         t(key) {

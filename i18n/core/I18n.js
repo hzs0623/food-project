@@ -5,7 +5,7 @@ class I18nRuntimeBase {
     this.defaultLang = defaultLang || 'zh';
     this.lang = this.setLang(this.defaultLang);
 
-    this.updateCallback = [];
+    this.updateCallback = {};
   }
 
   //设置语言
@@ -14,13 +14,21 @@ class I18nRuntimeBase {
     this.lang = lang;
     try {
       wx.setStorageSync(this.strageKey, lang);
-      this.updateCallback.forEach((fn) => fn(lang));
+      Object.values(this.updateCallback).forEach((fn) => {
+        fn(lang);
+      });
       return lang;
     } catch (e) {}
   }
 
   updateLang(fn) {
-    this.updateCallback.push(fn);
+    const ids = Math.random();
+    this.updateCallback[ids] = fn;
+    return ids;
+  }
+
+  detached(id) {
+    delete this.updateCallback[id];
   }
 
   //获取语言设置
