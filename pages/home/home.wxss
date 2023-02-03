@@ -16,6 +16,7 @@
   padding: 0 0.32rem;
 }
 .home-page-ar .home-search {
+  height: 27px;
   display: flex;
   margin-bottom: 0.48rem;
 }
@@ -26,9 +27,9 @@
   align-items: center;
   flex: 1;
   background-color: #f3f3f3;
-  font-size: 14px;
+  font-size: 12px;
   color: #bbb;
-  border-radius: 15px;
+  border-radius: 32rpx;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
   overflow: hidden;
@@ -47,6 +48,7 @@
 .home-page-ar .home-page__swiper {
   height: 100%;
   width: 100%;
+  /* border-radius: 32rpx; */
 }
 
 .onewrap {
@@ -66,6 +68,7 @@
   padding: 0 0.32rem;
 }
 .home-page .home-search {
+  height: 27px;
   display: flex;
   margin-bottom: 0.48rem;
 }
@@ -76,9 +79,9 @@
   align-items: center;
   flex: 1;
   background-color: #f3f3f3;
-  font-size: 14px;
+  font-size: 12px;
   color: #bbb;
-  border-radius: 15px;
+  border-radius: 32rpx;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
   overflow: hidden;
@@ -97,4 +100,5 @@
 .home-page .home-page__swiper {
   height: 100%;
   width: 100%;
+  border-radius: 32rpx;
 }

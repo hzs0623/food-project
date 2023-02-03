@@ -16,7 +16,7 @@
   box-sizing: border-box;
   position: relative;
   width: 100px;
-  height: 30px;
+  height: 100%;
   font-size: 12px;
   background-color: #ff6100;
   color: #fff;
@@ -55,7 +55,7 @@
   box-sizing: border-box;
   position: relative;
   width: 100px;
-  height: 30px;
+  height: 100%;
   font-size: 12px;
   background-color: #ff6100;
   color: #fff;
