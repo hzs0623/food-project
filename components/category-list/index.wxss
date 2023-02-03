@@ -14,7 +14,7 @@
 .category-comp-ar {
   direction: rtl;
   box-sizing: border-box;
-  padding: 0 4px 4px 4px;
+  padding-bottom: 24rpx;
 }
 .category-comp-ar .category-comp-inner {
   height: 100%;
@@ -27,7 +27,7 @@
   height: 80rpx;
 }
 .category-comp-ar .category-comp-item {
-  margin-top: 4px;
+  margin-top: 24rpx;
   width: 20%;
   display: flex;
   text-align: center;
@@ -55,7 +55,7 @@
 }
 .category-comp {
   box-sizing: border-box;
-  padding: 0 4px 4px 4px;
+  padding-bottom: 24rpx;
 }
 .category-comp .category-comp-inner {
   height: 100%;
@@ -68,7 +68,7 @@
   height: 80rpx;
 }
 .category-comp .category-comp-item {
-  margin-top: 4px;
+  margin-top: 24rpx;
   width: 20%;
   display: flex;
   text-align: center;
