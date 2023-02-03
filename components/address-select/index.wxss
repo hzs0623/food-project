@@ -1,0 +1,78 @@
+.onewrap {
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.twowarap {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.address-select-ar {
+  direction: rtl;
+  box-sizing: border-box;
+  position: relative;
+  width: 100px;
+  height: 30px;
+  font-size: 12px;
+  background-color: #ff6100;
+  color: #fff;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.address-select-ar .address-select-icon {
+  position: absolute;
+  left: 0;
+}
+.address-select-ar .address-select-inner {
+  padding-left: 20px;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.onewrap {
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.twowarap {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.address-select {
+  box-sizing: border-box;
+  position: relative;
+  width: 100px;
+  height: 30px;
+  font-size: 12px;
+  background-color: #ff6100;
+  color: #fff;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.address-select .address-select-icon {
+  position: absolute;
+  left: 0;
+}
+.address-select .address-select-inner {
+  padding-left: 20px;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

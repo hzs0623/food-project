@@ -1,0 +1,23 @@
+<view class="{{ reverse ? 'address-select-ar' : 'address-select'}}">
+  <t-icon
+    class="address-select-icon"
+    name="chevron-down-circle"
+    size="24px"
+    bindtap="onCityPicker"
+  />
+  <view class="address-select-inner"  bindtap="onCityPicker">{{ currentAdInfo.city }}</view>
+
+  <t-picker
+    visible="{{cityVisible}}"
+    value="{{currentAdInfo.city}}"
+    data-key="city"
+    title="选择城市"
+    cancelBtn="取消"
+    confirmBtn="确认"
+    bindchange="onPickerChange"
+    bindcancel="onPickerCancel"
+  >
+    <t-picker-item options="{{citys}}"></t-picker-item>
+  </t-picker>
+
+</view>

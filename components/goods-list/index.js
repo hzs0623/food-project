@@ -1,4 +1,6 @@
-import { I18n } from '../../i18n/core/index';
+import {
+  I18n
+} from '../../i18n/core/index';
 
 Component({
   behaviors: [I18n],
@@ -34,18 +36,33 @@ Component({
 
   methods: {
     onClickGoods(e) {
-      const { index } = e.currentTarget.dataset;
-      this.triggerEvent('click', { ...e.detail, index });
+      const {
+        index
+      } = e.currentTarget.dataset;
+      this.triggerEvent('click', {
+        ...e.detail,
+        index
+      });
     },
 
     onAddCart(e) {
-      const { index } = e.currentTarget.dataset;
-      this.triggerEvent('addcart', { ...e.detail, index });
+      const {
+        index
+      } = e.currentTarget.dataset;
+      this.triggerEvent('addcart', {
+        ...e.detail,
+        index
+      });
     },
 
     onClickGoodsThumb(e) {
-      const { index } = e.currentTarget.dataset;
-      this.triggerEvent('thumb', { ...e.detail, index });
+      const {
+        index
+      } = e.currentTarget.dataset;
+      this.triggerEvent('thumb', {
+        ...e.detail,
+        index
+      });
     },
 
     init() {
@@ -54,7 +71,9 @@ Component({
 
     genIndependentID(id) {
       if (id) {
-        this.setData({ independentID: id });
+        this.setData({
+          independentID: id
+        });
       } else {
         this.setData({
           independentID: `goods-list-${~~(Math.random() * 10 ** 8)}`,

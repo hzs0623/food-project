@@ -1,7 +1,25 @@
 .home-page {
-  color: red;
+  padding: 0 0.32rem;
+  .home-search {
+    display: flex;
+  }
 
-  & when(@IS_AR) {
-    color: blue;
+  .home-search-inner {
+    padding: 16rpx 24rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    background-color: #f3f3f3;
+    font-size: 14px;
+    color: #bbb;
+    border-radius: 15px;
+    .onewrap;
+
+    text {
+      flex: 1;
+      padding-right: 16rpx;
+      .onewrap;
+    }
   }
 }

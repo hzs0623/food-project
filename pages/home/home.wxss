@@ -1,9 +1,90 @@
+.onewrap {
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.twowarap {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
 .home-page-ar {
   direction: rtl;
-  color: red;
-  color: blue;
+  padding: 0 0.32rem;
+}
+.home-page-ar .home-search {
+  display: flex;
+}
+.home-page-ar .home-search-inner {
+  padding: 16rpx 24rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  background-color: #f3f3f3;
+  font-size: 14px;
+  color: #bbb;
+  border-radius: 15px;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.home-page-ar .home-search-inner text {
+  flex: 1;
+  padding-right: 16rpx;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
+.onewrap {
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.twowarap {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
 .home-page {
-  color: red;
+  padding: 0 0.32rem;
+}
+.home-page .home-search {
+  display: flex;
+}
+.home-page .home-search-inner {
+  padding: 16rpx 24rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  background-color: #f3f3f3;
+  font-size: 14px;
+  color: #bbb;
+  border-radius: 15px;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.home-page .home-search-inner text {
+  flex: 1;
+  padding-right: 16rpx;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }

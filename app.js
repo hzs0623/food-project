@@ -2,10 +2,17 @@ import updateManager from './common/updateManager';
 import checkVersion from './common/checkVersion';
 
 // 初始化多语言
-import { initI18n } from './i18n/core/index';
-import { locals } from './i18n/language/index';
+import {
+  initI18n
+} from './i18n/core/index';
+import {
+  locals
+} from './i18n/language/index';
 import WatchLang from './i18n/core/app';
-const i18n = initI18n({ locals, lang: 'uly' });
+const i18n = initI18n({
+  locals,
+  lang: 'zh'
+});
 
 App({
   globalData: {},

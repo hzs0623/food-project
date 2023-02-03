@@ -134,4 +134,8 @@ I18nPage({
   moveClick() {
     this.setLocale(!this.data.reverse ? 'uly' : 'zh');
   },
+
+  selectCity(value) {
+    console.log(value);
+  },
 });

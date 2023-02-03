@@ -30,7 +30,7 @@ export default () => {
   }
   const version = wx.getAppBaseInfo().SDKVersion;
   if (compareVersion(version, '2.9.2') >= 0) {
-    wx.openBluetoothAdapter();
+    // console.log('当前的版本支持')
   } else {
     // 如果希望用户在最新版本的客户端上体验您的小程序，可以这样子提示
     wx.showModal({

@@ -1,58 +1,34 @@
 <view class="{{ reverse ? 'home-page-ar' : 'home-page'}}">
-	<view style="text-align: center" wx:if="{{pageLoading}}">
-		<t-loading
-			theme="circular"
-			size="40rpx"
-			loading
-			t-class-indicator="t-class-indicator"
-		>
-			<span slot="text" class="loading-text">加载中...</span>
-		</t-loading>
-	</view>
+  <view style="text-align: center" wx:if="{{pageLoading}}">
+    <t-loading theme="circular" size="40rpx" loading t-class-indicator="t-class-indicator">
+      <span slot="text" class="loading-text">加载中...</span>
+    </t-loading>
+  </view>
 
-	<view class="search" bind:tap="navToSearchPage">
-		<t-search
-		  t-class-input="t-search__input"
-		  t-class-input-container="t-search__input-container"
-		  placeholder="iphone 13 火热发售中"
-		  leftIcon=""
-		  disabled
-		>
-			<t-icon
-			  slot="left-icon"
-			  prefix="wr"
-			  name="search"
-			  size="40rpx"
-			  color="#bbb"
-			/>
-		</t-search>
-	</view>
+  <view class="home-search">
+    <address-select bindchange="selectCity" />
+    <view
+      class="home-search-inner"
+      bind:tap="navToSearchPage"
+    > 
+      <text>iphone 13 火热发售中</text>
+      <t-icon prefix="wr" name="search" size="40rpx" color="#bbb" />
+    </view>
+  </view>
 
 
-	<t-swiper
-		wx:if="{{imgSrcs.length > 0}}"
-		current="{{current}}"
-		autoplay="{{autoplay}}"
-		duration="{{duration}}"
-		interval="{{interval}}"
-		navigation="{{navigation}}"
-	>
-		<t-swiper-item wx:for="{{imgSrcs}}" wx:key="index">
-			<t-image src="{{item.img}}" t-class="t-image__swiper" bind:tap="navToActivityDetail" />
-		</t-swiper-item>
-	</t-swiper>
+  <t-swiper wx:if="{{imgSrcs.length > 0}}" current="{{current}}" autoplay="{{autoplay}}" duration="{{duration}}" interval="{{interval}}" navigation="{{navigation}}">
+    <t-swiper-item wx:for="{{imgSrcs}}" wx:key="index">
+      <t-image src="{{item.img}}" t-class="t-image__swiper" bind:tap="navToActivityDetail" />
+    </t-swiper-item>
+  </t-swiper>
 
-	<!-- 分类列表 -->
-	<view>{{ language.categories }}{{ language.list }}</view>
+  <!-- 分类列表 -->
+  <view>{{ language.categories }}{{ language.list }}</view>
 
-	<goods-list
-	  wr-class="goods-list-container"
-	  goodsList="{{goodsList}}"
-	  bind:click="goodListClickHandle"
-	  bind:addcart="goodListAddCartHandle"
-	/>
-	<load-more list-is-empty="{{!goodsList.length}}" status="{{goodsListLoadStatus}}" bind:retry="onReTry" />
-	<t-toast id="t-toast" />
+  <goods-list wr-class="goods-list-container" goodsList="{{goodsList}}" bind:click="goodListClickHandle" bind:addcart="goodListAddCartHandle" />
+  <load-more list-is-empty="{{!goodsList.length}}" status="{{goodsListLoadStatus}}" bind:retry="onReTry" />
+  <t-toast id="t-toast" />
 
-	<t-moveable bind:onClick="moveClick" />
+  <t-moveable bind:onClick="moveClick" />
 </view>
