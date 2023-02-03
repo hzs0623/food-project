@@ -17,6 +17,7 @@
     "goods-list": "/components/goods-list/index",
     "load-more": "/components/load-more/index",
     "t-moveable": "/components/moveable/index",
-    "address-select": "/components/address-select/index"
+    "address-select": "/components/address-select/index",
+    "category-list": "/components/category-list/index"
   }
 }

@@ -1,5 +1,6 @@
 import { fetchHome } from '../../services/home/home';
 import { fetchGoodsList } from '../../services/good/fetchGoods';
+import { getCategoryListData } from '../../services/good/fetchCategoryList';
 import Toast from 'tdesign-miniprogram/toast/index';
 import { I18nPage } from '../../i18n/core/index';
 
@@ -91,9 +92,11 @@ I18nPage({
 
     try {
       const nextList = await fetchGoodsList(pageIndex, pageSize);
+      const catyList = await getCategoryListData();
       this.setData({
         goodsList: fresh ? nextList : this.data.goodsList.concat(nextList),
         goodsListLoadStatus: 0,
+        catyList,
       });
 
       this.goodListPagination.index = pageIndex;

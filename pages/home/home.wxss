@@ -17,6 +17,7 @@
 }
 .home-page-ar .home-search {
   display: flex;
+  margin-bottom: 0.48rem;
 }
 .home-page-ar .home-search-inner {
   padding: 16rpx 24rpx;
@@ -43,6 +44,10 @@
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+.home-page-ar .home-page__swiper {
+  height: 100%;
+  width: 100%;
+}
 
 .onewrap {
   -webkit-box-orient: vertical;
@@ -62,6 +67,7 @@
 }
 .home-page .home-search {
   display: flex;
+  margin-bottom: 0.48rem;
 }
 .home-page .home-search-inner {
   padding: 16rpx 24rpx;
@@ -87,4 +93,8 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+.home-page .home-page__swiper {
+  height: 100%;
+  width: 100%;
 }

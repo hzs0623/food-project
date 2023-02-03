@@ -1,7 +1,10 @@
 .home-page {
+  @marginBottom: 0.48rem;
+
   padding: 0 0.32rem;
   .home-search {
     display: flex;
+    margin-bottom: @marginBottom;
   }
 
   .home-search-inner {
@@ -21,5 +24,10 @@
       padding-right: 16rpx;
       .onewrap;
     }
+  }
+
+  .home-page__swiper {
+    height: 100%;
+    width: 100%;
   }
 }
