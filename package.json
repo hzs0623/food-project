@@ -9,7 +9,8 @@
     "check": "node config/eslintCheck.js",
     "less": "gulp less",
     "less-ar": "gulp less --reverse=true",
-    "build": "yarn less & yarn less-ar && gulp css && gulp clean"
+    "build": "yarn less & yarn less-ar && gulp css && gulp clean",
+    "gulp": "yarn build && gulp watch"
   },
   "author": "",
   "license": "ISC",
