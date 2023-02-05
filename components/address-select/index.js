@@ -21,7 +21,7 @@ Component({
   data: {
     currentAdInfo: {
       // adcode: '440305',
-      // city: '深圳市',
+      city: '无法获取地区',
       // district: '南山区',
       // location: { lat: 22.533191, lng: 113.930478 },
       // name: '中国,广东省,深圳市,南山区',
@@ -63,10 +63,22 @@ Component({
           const dataMap = {
             currentAdInfo,
             citys: [
-              { label: '北京市', value: '北京市' },
-              { label: '上海市', value: '上海市' },
-              { label: '维吾尔语', value: '维吾尔语' },
-              { label: '深圳市', value: '深圳市' },
+              {
+                label: '北京市',
+                value: '北京市',
+              },
+              {
+                label: '上海市',
+                value: '上海市',
+              },
+              {
+                label: '维吾尔语',
+                value: '维吾尔语',
+              },
+              {
+                label: '深圳市',
+                value: '深圳市',
+              },
             ],
           };
           this.setData(dataMap);
@@ -76,7 +88,9 @@ Component({
     },
 
     onCityPicker() {
-      this.setData({ cityVisible: true });
+      this.setData({
+        cityVisible: true,
+      });
     },
 
     onPickerChange(e) {
