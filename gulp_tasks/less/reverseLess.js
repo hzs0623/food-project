@@ -49,5 +49,15 @@ function createArSrc(str = '', suffix = '-ar') {
 }
 
 module.exports = (contents) => {
-  return createArSrc(contents);
+  let str = createArSrc(contents);
+  const config = [
+    { label: 'right', value: 'left' },
+    { label: 'left', value: 'right' },
+  ];
+
+  config.forEach(({ label, value }) => {
+    str = str.replace(label, value);
+  });
+
+  return str;
 };
