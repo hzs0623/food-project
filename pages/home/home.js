@@ -15,7 +15,9 @@ I18nPage({
     autoplay: true,
     duration: 500,
     interval: 5000,
-    navigation: { type: 'dots' },
+    navigation: {
+      type: 'dots',
+    },
   },
 
   goodListPagination: {
@@ -57,18 +59,20 @@ I18nPage({
     });
 
     fetchHome().then(({ swiper, tabList }) => {
+      const swipreData = JSON.parse(JSON.stringify(swiper));
       if (this.data.reverse) {
         this.setData({
           tabList,
-          imgSrcs: swiper.reverse(),
+          imgSrcs: swipreData.reverse(),
           pageLoading: false,
-          current: swiper.length - 1,
+          current: swiper.length - 2,
         });
       } else {
         this.setData({
           tabList,
           imgSrcs: swiper,
           pageLoading: false,
+          current: 1,
         });
       }
 
@@ -92,7 +96,9 @@ I18nPage({
       });
     }
 
-    this.setData({ goodsListLoadStatus: 1 });
+    this.setData({
+      goodsListLoadStatus: 1,
+    });
 
     const pageSize = this.goodListPagination.num;
     let pageIndex =
@@ -113,7 +119,9 @@ I18nPage({
       this.goodListPagination.index = pageIndex;
       this.goodListPagination.num = pageSize;
     } catch (err) {
-      this.setData({ goodsListLoadStatus: 3 });
+      this.setData({
+        goodsListLoadStatus: 3,
+      });
     }
   },
 
@@ -134,7 +142,9 @@ I18nPage({
   },
 
   navToSearchPage() {
-    wx.navigateTo({ url: '/pages/goods/search/index' });
+    wx.navigateTo({
+      url: '/pages/goods/search/index',
+    });
   },
 
   navToActivityDetail({ detail }) {
