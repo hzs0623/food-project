@@ -11,58 +11,6 @@
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 }
-.home-page-ar {
-  direction: rtl;
-  padding: 0 24rpx;
-}
-.home-page-ar .home-search {
-  height: 27px;
-  display: flex;
-  margin-bottom: 0.48rem;
-}
-.home-page-ar .home-search-inner {
-  padding: 16rpx 24rpx;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex: 1;
-  background-color: #f3f3f3;
-  font-size: 12px;
-  color: #bbb;
-  border-radius: 32rpx;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-.home-page-ar .home-search-inner text {
-  flex: 1;
-  padding-right: 16rpx;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-.home-page-ar .home-page__swiper {
-  height: 300rpx;
-  width: 100%;
-}
-
-.onewrap {
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-.twowarap {
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-}
 .home-page {
   padding: 0 24rpx;
 }
@@ -99,4 +47,70 @@
 .home-page .home-page__swiper {
   height: 300rpx;
   width: 100%;
+}
+.swiper-mark {
+  height: 300rpx;
+  width: 100%;
+}
+.t-swiper-nav__dots {
+  direction: ltr !important;
+}
+ 
+ .onewrap {
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.twowarap {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.home-page-ar {
+  direction: rtl;
+  padding: 0 24rpx;
+}
+.home-page-ar .home-search {
+  height: 27px;
+  display: flex;
+  margin-bottom: 0.48rem;
+}
+.home-page-ar .home-search-inner {
+  padding: 16rpx 24rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  background-color: #f3f3f3;
+  font-size: 12px;
+  color: #bbb;
+  border-radius: 32rpx;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.home-page-ar .home-search-inner text {
+  flex: 1;
+  padding-left: 16rpx;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.home-page-ar .home-page__swiper {
+  height: 300rpx;
+  width: 100%;
+}
+.swiper-mark {
+  height: 300rpx;
+  width: 100%;
+}
+.t-swiper-nav__dots {
+  direction: ltr !important;
 }

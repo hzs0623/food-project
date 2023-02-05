@@ -55,12 +55,23 @@ I18nPage({
     this.setData({
       pageLoading: true,
     });
+
     fetchHome().then(({ swiper, tabList }) => {
-      this.setData({
-        tabList,
-        imgSrcs: swiper,
-        pageLoading: false,
-      });
+      if (this.data.reverse) {
+        this.setData({
+          tabList,
+          imgSrcs: swiper.reverse(),
+          pageLoading: false,
+          current: swiper.length - 1,
+        });
+      } else {
+        this.setData({
+          tabList,
+          imgSrcs: swiper,
+          pageLoading: false,
+        });
+      }
+
       this.loadGoodsList(true);
     });
   },
@@ -133,9 +144,17 @@ I18nPage({
     });
   },
 
-  // 切换多语言
+  // 切换多语言, 重新请求过数据
   moveClick() {
     this.setLocale(!this.data.reverse ? 'uly' : 'zh');
+    this.clearData();
+    this.init();
+  },
+
+  clearData() {
+    this.setData({
+      imgSrcs: [],
+    });
   },
 
   selectCity(value) {

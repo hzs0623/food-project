@@ -22,6 +22,8 @@
     </t-swiper-item>
   </t-swiper>
 
+  <view wx:if="{{ imgSrcs.length === 0 }}" class="swiper-mark"></view>
+
   <!-- 分类列表 -->
   <category-list goodsList="{{catyList}}" />
   <!-- <view>{{ language.categories }}{{ language.list }}</view> -->
