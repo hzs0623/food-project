@@ -4,19 +4,11 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint --cache --fix --ext .js",
-    "check": "node config/eslintCheck.js",
     "less": "gulp less",
     "gulp": "yarn less && gulp watch"
   },
   "author": "",
   "license": "ISC",
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged && npm run check"
-    }
-  },
   "lint-staged": {
     "*.{js, ts}": "eslint --cache --fix",
     "*.{js,ts,css,less}": "prettier --write"
