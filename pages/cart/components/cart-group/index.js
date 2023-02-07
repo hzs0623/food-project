@@ -109,23 +109,23 @@ Component({
     },
 
     // 选中门店
-    selectStore(e) {
-      const { storeIndex } = e.currentTarget.dataset;
-      const store = this.data.storeGoods[storeIndex];
-      const isSelected = !store.isSelected;
-      if (store.storeStockShortage && isSelected) {
-        Toast({
-          context: this,
-          selector: '#t-toast',
-          message: '部分商品库存不足',
-        });
-        return;
-      }
-      this.triggerEvent('selectstore', {
-        store,
-        isSelected,
-      });
-    },
+    // selectStore(e) {
+    //   const { storeIndex } = e.currentTarget.dataset;
+    //   const store = this.data.storeGoods[storeIndex];
+    //   const isSelected = !store.isSelected;
+    //   if (store.storeStockShortage && isSelected) {
+    //     Toast({
+    //       context: this,
+    //       selector: '#t-toast',
+    //       message: '部分商品库存不足',
+    //     });
+    //     return;
+    //   }
+    //   this.triggerEvent('selectstore', {
+    //     store,
+    //     isSelected,
+    //   });
+    // },
 
     // 展开/收起切换
     showToggle() {

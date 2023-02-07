@@ -5,6 +5,9 @@ export const getLifetimes = () => {
         const watchLangId = getApp().globalData.watchLang.watch(
           (globalData) => {
             this.setData(globalData);
+            if (this._watchLanuage) {
+              this._watchLanuage();
+            }
           },
         );
         this.setData({ watchLangId });

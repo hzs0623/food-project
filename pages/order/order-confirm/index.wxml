@@ -3,7 +3,7 @@
 <wxs module="handleInvoice" src="./handleInvoice.wxs" />
 <wxs module="getNotes" src="./getNotes.wxs" />
 <view class="order-sure" wx:if="{{!loading}}">
-	<address-card addressData="{{userAddress}}" bind:addclick="onGotoAddress" bind:addressclick="onGotoAddress" />
+	<!-- <address-card addressData="{{userAddress}}" bind:addclick="onGotoAddress" bind:addressclick="onGotoAddress" /> -->
 	<view
 	 class="order-wrapper"
 	 wx:for="{{settleDetailData.storeGoodsList}}"
@@ -11,16 +11,6 @@
 	 wx:for-index="storeIndex"
 	 wx:key="storeIndex"
 	>
-		<view class="store-wrapper">
-			<t-icon
-			 prefix="wr"
-			 size="40rpx"
-			 color="#333333"
-			 name="store"
-			 class="store-logo"
-			/>
-			{{stores.storeName}}
-		</view>
 		<view
 		 wx:if="{{orderCardList[storeIndex].goodsList.length > 0}}"
 		 wx:for="{{orderCardList[storeIndex].goodsList}}"
@@ -55,16 +45,7 @@
 			 price="{{settleDetailData.totalSalePrice || '0'}}"
 			/>
 		</view>
-		<view class="pay-item">
-			<text>运费</text>
-			<view class="pay-item__right font-bold">
-				<block wx:if="{{settleDetailData.totalDeliveryFee && settleDetailData.totalDeliveryFee != 0}}">
-					+
-					<price fill decimalSmaller price="{{settleDetailData.totalDeliveryFee}}" />
-				</block>
-				<text wx:else>免运费</text>
-			</view>
-		</view>
+
 		<view class="pay-item">
 			<text>活动优惠</text>
 			<view class="pay-item__right primary font-bold">
@@ -82,13 +63,6 @@
           <block wx:else>选择优惠券</block>
 				</block>
 				<text wx:else>无可用</text>
-				<t-icon name="chevron-right" size="32rpx" color="#BBBBBB" />
-			</view>
-		</view>
-		<view class="pay-item" wx:if="{{settleDetailData.invoiceSupport}}">
-			<text>发票</text>
-			<view class="pay-item__right" catchtap="onReceipt">
-				<text >{{handleInvoice(invoiceData)}}</text>
 				<t-icon name="chevron-right" size="32rpx" color="#BBBBBB" />
 			</view>
 		</view>

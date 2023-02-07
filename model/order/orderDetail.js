@@ -351,7 +351,7 @@ const orderResps = [
 
       couponAmount: '5000',
       autoCancelTime: null,
-      orderStatusName: '待发货',
+      orderStatusName: '已付款',
       orderSatusRemark: null,
       logisticsLogVO: null,
       invoiceStatus: 3,
@@ -664,7 +664,7 @@ const orderResps = [
 
       couponAmount: '5000',
       autoCancelTime: null,
-      orderStatusName: '待收货',
+      orderStatusName: '已取消',
       orderSatusRemark: null,
       logisticsLogVO: null,
       invoiceStatus: 1,

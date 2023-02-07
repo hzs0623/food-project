@@ -99,16 +99,7 @@
 					 price="{{order.totalAmount || '0'}}"
 					/>
 				</view>
-				<view class="pay-item">
-					<text>运费</text>
-					<view class="pay-item__right font-bold">
-						<block wx:if="{{order.freightFee}}">
-							+
-							<price fill decimalSmaller price="{{order.freightFee}}" />
-						</block>
-						<text wx:else>免运费</text>
-					</view>
-				</view>
+
 				<view class="pay-item">
 					<text>活动优惠</text>
 					<view class="pay-item__right primary font-bold">
@@ -153,13 +144,6 @@
 				</view>
 			</view>
 			<view class="border-bottom border-bottom-margin" />
-			<view class="pay-item">
-				<text>发票</text>
-				<view class="pay-item__right" bindtap="onOrderInvoiceView">
-					<text class="order-no normal-color">{{invoiceType}}</text>
-					<view class="pay-item__right__copy">查看</view>
-				</view>
-			</view>
 			<view class="pay-item">
 				<text>备注</text>
 				<view class="pay-item__right">

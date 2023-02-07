@@ -159,7 +159,7 @@ Page({
         amountTip: `最多可申请退款¥ ${priceFormat(
           res.data.refundableAmount,
           2,
-        )}，含发货运费¥ ${priceFormat(res.data.shippingFeeIncluded, 2)}`,
+        )}`,
         maxApplyNum: res.data.numOfSkuAvailable,
       });
     } catch (err) {

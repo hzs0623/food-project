@@ -1,5 +1,23 @@
 import { I18n } from '../i18n/core/index';
 
+const listData = [
+  {
+    icon: 'home',
+    // text: '首页',
+    url: 'pages/home/home',
+  },
+  {
+    icon: 'cart',
+    // text: '购物车',
+    url: 'pages/cart/index',
+  },
+  {
+    icon: 'person',
+    // text: '个人中心',
+    url: 'pages/usercenter/index',
+  },
+];
+
 Component({
   behaviors: [I18n],
   data: {
@@ -8,35 +26,7 @@ Component({
   },
 
   attached() {
-    const list = [
-      {
-        icon: 'home',
-        // text: '首页',
-        url: 'pages/home/home',
-      },
-      {
-        icon: 'cart',
-        // text: '购物车',
-        url: 'pages/cart/index',
-      },
-      {
-        icon: 'person',
-        // text: '个人中心',
-        url: 'pages/usercenter/index',
-      },
-    ];
-
-    if (this.data.reverse) {
-      this.setData({
-        list: list.reverse(),
-        active: list.length - 1,
-      });
-    } else {
-      this.setData({
-        list,
-        active: 0,
-      });
-    }
+    this._watchLanuage();
   },
 
   methods: {
@@ -47,6 +37,21 @@ Component({
           ? this.data.list[event.detail.value].url
           : `/${this.data.list[event.detail.value].url}`,
       });
+    },
+
+    _watchLanuage() {
+      const list = JSON.parse(JSON.stringify(listData));
+      if (this.data.reverse) {
+        this.setData({
+          list: list.reverse(),
+          active: list.length - 1,
+        });
+      } else {
+        this.setData({
+          list,
+          active: 0,
+        });
+      }
     },
 
     init() {

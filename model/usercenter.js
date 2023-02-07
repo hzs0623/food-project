@@ -5,18 +5,6 @@ const userInfo = {
   phoneNumber: '17723575366',
   gender: 2,
 };
-const countsData = [
-  {
-    num: 2,
-    name: '积分',
-    type: 'point',
-  },
-  {
-    num: 10,
-    name: '优惠券',
-    type: 'coupon',
-  },
-];
 
 const orderTagInfos = [
   {
@@ -46,7 +34,6 @@ export const genSimpleUserInfo = () => ({ ...userInfo });
 
 export const genUsercenter = () => ({
   userInfo,
-  countsData,
   orderTagInfos,
   customerServiceInfo,
 });
