@@ -1,6 +1,4 @@
-import {
-  I18n
-} from '../../i18n/core/index';
+import { I18n } from '../../i18n/core/index';
 
 Component({
   behaviors: [I18n],
@@ -36,32 +34,26 @@ Component({
 
   methods: {
     onClickGoods(e) {
-      const {
-        index
-      } = e.currentTarget.dataset;
+      const { index } = e.currentTarget.dataset;
       this.triggerEvent('click', {
         ...e.detail,
-        index
+        index,
       });
     },
 
     onAddCart(e) {
-      const {
-        index
-      } = e.currentTarget.dataset;
+      const { index } = e.currentTarget.dataset;
       this.triggerEvent('addcart', {
         ...e.detail,
-        index
+        index,
       });
     },
 
     onClickGoodsThumb(e) {
-      const {
-        index
-      } = e.currentTarget.dataset;
+      const { index } = e.currentTarget.dataset;
       this.triggerEvent('thumb', {
         ...e.detail,
-        index
+        index,
       });
     },
 
@@ -72,7 +64,7 @@ Component({
     genIndependentID(id) {
       if (id) {
         this.setData({
-          independentID: id
+          independentID: id,
         });
       } else {
         this.setData({

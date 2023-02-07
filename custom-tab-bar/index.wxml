@@ -11,7 +11,7 @@
 	>
 		<view class="custom-tab-bar-wrapper">
 			<t-icon prefix="wr" name="{{item.icon}}" size="48rpx" />
-			<view class="text">{{ item.text }}</view>
+			<!-- <view class="text">{{ item.text }}</view> -->
 		</view>
 	</t-tab-bar-item>
 </t-tab-bar>

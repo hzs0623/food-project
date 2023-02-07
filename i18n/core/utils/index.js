@@ -2,13 +2,15 @@ export const getLifetimes = () => {
   return {
     lifetimes: {
       attached() {
-        const app = getApp();
-        if (!app.globalData.watchLanguage) {
-          return console.warn('依赖watch没有添加');
+        if (!this.data.watchId) {
+          const watchId = getApp().globalData.watchLanguage((globalData) => {
+            this.setData(globalData);
+          });
+          this.setData({ watchId });
         }
-        app.globalData.watchLanguage((globalData) => {
-          this.setData(globalData);
-        });
+      },
+      detached() {
+        getApp().globalData.unWatchLanguage(this.data.watchId);
       },
     },
   };

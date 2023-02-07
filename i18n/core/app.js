@@ -1,7 +1,6 @@
-const watchs = new Map();
+const watchs = [];
 
-// 监听全局变量变化
-
+/* 监听全局变量变化 */
 class appLang {
   constructor(app, i18n) {
     this.app = app;
@@ -17,52 +16,52 @@ class appLang {
   init() {
     const { i18n } = this;
     i18n.watchLang(() => {
-      this.app.globalData.reverse = i18n.getLang() === 'uly';
-      this.app.globalData.language = i18n.getLanguage(); //根据当前系统语言获取对应文本
-      this.app.globalData.lang = i18n.getLang();
+      this.updateGlobalData();
     });
 
-    // 全局更新多语言触发方法
-    this.app.globalData.watchLanguage = (fn) => {
-      this.watch(
-        'lang',
-        () => {
-          fn(this.app.globalData);
-        },
-        { immediate: true },
-      );
+    // 添加全局多语言update
+    this.app.globalData.watchLanguage = async (fn) => {
+      const id = watchs.push(fn);
+      if (watchs.length === 1) {
+        // 初始化，异步等所有组件方法推入队列中
+        await Promise.resolve();
+        this.updateGlobalData();
+      }
+      return id - 1;
     };
+
+    // 卸载监听
+    this.app.globalData.unWatchLanguage = (id) => {
+      id && watchs.splice(id, 1);
+    };
+
+    // 监听lang的改变触发
+    this.watch('lang', () => {
+      watchs.forEach((f) => f(this.app.globalData));
+    });
   }
 
-  watch(key, method, { immediate = false } = {}) {
+  updateGlobalData() {
+    this.app.globalData.reverse = i18n.getLang() === 'uly';
+    this.app.globalData.language = i18n.getLanguage(); //根据当前系统语言获取对应文本
+    this.app.globalData.lang = i18n.getLang();
+  }
+
+  watch(key, method) {
     const obj = this.app.globalData;
-    let val = obj[key]; // 单独变量来存储原来的值
-
-    if (immediate) {
-      method(val);
-    }
-
-    const fns = watchs.get(key) || [];
-    fns.push(method);
-    watchs.set(key, fns);
-
-    // 每个key只依赖加载一次，防止重复监听
-    if (fns.length === 1) {
-      Object.defineProperty(obj, key, {
-        configurable: false,
-        enumerable: true,
-        set: function (value) {
-          if (value === val) return;
-          Promise.resolve().then(function () {
-            fns.forEach((f) => f(value, val));
-            val = value; // 重新赋值
-          });
-        },
-        get: function () {
-          return val;
-        },
-      });
-    }
+    let val = obj[key];
+    Object.defineProperty(obj, key, {
+      configurable: false,
+      enumerable: true,
+      set: function (value) {
+        if (value === val) return;
+        method(value, val);
+        val = value;
+      },
+      get: function () {
+        return val;
+      },
+    });
   }
 }
 

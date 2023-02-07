@@ -48,10 +48,7 @@ class I18nRuntimeBase {
    * @param fn[function]: 触发回调方法
    * @param immediate: 初始化就执行 默认true
    */
-  watchLang(fn, { immediate = true } = {}) {
-    if (immediate) {
-      fn(this.lang);
-    }
+  watchLang(fn) {
     const id = this.updateCallback.push(fn);
     return id - 1;
   }
