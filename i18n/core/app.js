@@ -24,10 +24,6 @@ class appLang {
   constructor(app, i18n) {
     this.app = app;
     this.i18n = i18n;
-    const { reverse, lang, language } = app.globalData;
-    this.reverse = reverse;
-    this.lang = lang; // 站点
-    this.language = language; // 多语言数据
     this.init();
   }
 
