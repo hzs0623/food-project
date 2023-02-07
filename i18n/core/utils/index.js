@@ -2,15 +2,15 @@ export const getLifetimes = () => {
   return {
     lifetimes: {
       attached() {
-        if (!this.data.watchId) {
-          const watchId = getApp().globalData.watchLanguage((globalData) => {
+        const watchLangId = getApp().globalData.watchLang.watch(
+          (globalData) => {
             this.setData(globalData);
-          });
-          this.setData({ watchId });
-        }
+          },
+        );
+        this.setData({ watchLangId });
       },
       detached() {
-        getApp().globalData.unWatchLanguage(this.data.watchId);
+        getApp().globalData.watchLang.unload(this.data.watchLangId);
       },
     },
   };
