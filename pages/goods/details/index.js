@@ -32,8 +32,7 @@ Page({
       hasImageCount: 0,
       middleCount: 0,
     },
-    isShowPromotionPop: false,
-    activityList: [],
+    activityList: [], // 标签
     recLeftImg,
     recRightImg,
     details: {},
@@ -288,22 +287,10 @@ Page({
     });
   },
 
-  closePromotionPopup() {
-    this.setData({
-      isShowPromotionPop: false,
-    });
-  },
-
   promotionChange(e) {
     const { index } = e.detail;
     wx.navigateTo({
       url: `/pages/promotion-detail/index?promotion_id=${index}`,
-    });
-  },
-
-  showPromotionPopup() {
-    this.setData({
-      isShowPromotionPop: true,
     });
   },
 
