@@ -34,7 +34,6 @@ I18nPage({
   },
 
   onLoad() {
-    this.setData({ lang: app.globalData.lang });
     this.init();
   },
 
