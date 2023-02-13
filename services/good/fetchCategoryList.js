@@ -16,3 +16,13 @@ export function getCategoryList() {
     resolve('real api');
   });
 }
+
+export function getCategoryListData() {
+  if (config.useMock) {
+    const { getCategoryListData } = require('../../model/category');
+    return getCategoryListData();
+  }
+  return new Promise((resolve) => {
+    resolve('real api');
+  });
+}

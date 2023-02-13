@@ -1,7 +1,6 @@
 import Toast from 'tdesign-miniprogram/toast/index';
 import { fetchSettleDetail } from '../../../services/order/orderConfirm';
 import { commitPay, wechatPayOrder } from './pay';
-import { getAddressPromise } from '../../usercenter/address/list/util';
 
 const stripeImg = `https://cdn-we-retail.ym.tencent.com/miniapp/order/stripe.png`;
 
@@ -254,28 +253,7 @@ Page({
     this.setData({ orderCardList, storeInfoList, submitCouponList });
     return data;
   },
-  onGotoAddress() {
-    /** 获取一个Promise */
-    getAddressPromise()
-      .then((address) => {
-        this.handleOptionsParams({
-          userAddressReq: { ...address, checked: true },
-        });
-      })
-      .catch(() => {});
 
-    const { userAddressReq } = this; // 收货地址
-
-    let id = '';
-
-    if (userAddressReq?.id) {
-      id = `&id=${userAddressReq.id}`;
-    }
-
-    wx.navigateTo({
-      url: `/pages/usercenter/address/list/index?selectMode=1&isOrderSure=1${id}`,
-    });
-  },
   onNotes(e) {
     const { storenoteindex: storeNoteIndex } = e.currentTarget.dataset;
     // 添加备注信息
@@ -494,15 +472,6 @@ Page({
     // 隐藏 popup
     this.setData({
       'settleDetailData.abnormalDeliveryGoodsList': [],
-    });
-  },
-  onReceipt() {
-    // 跳转 开发票
-    const invoiceData = this.invoiceData || {};
-    wx.navigateTo({
-      url: `/pages/order/receipt/index?invoiceData=${JSON.stringify(
-        invoiceData,
-      )}`,
     });
   },
 

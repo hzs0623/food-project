@@ -1,0 +1,26 @@
+.movable-area {
+  pointer-events: none;
+  z-index: 10000;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  direction: ltr;
+  .movable-view {
+    pointer-events: auto;
+    height: 48px;
+    width: 48px;
+    background: #0052d9;
+    border-radius: 50%;
+    color: #fff;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    top: 60%;
+  }
+}

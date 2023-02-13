@@ -1,4 +1,7 @@
+import { I18n } from '../../i18n/core/index';
+
 Component({
+  behaviors: [I18n],
   options: {
     multipleSlots: true,
   },
@@ -12,8 +15,6 @@ Component({
       this.triggerEvent('onClick');
     },
 
-    vtouchmove(e = {}) {
-      console.log(e);
-    },
+    vtouchmove() {},
   },
 });

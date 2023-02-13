@@ -15,8 +15,8 @@ Page({
     tabs: [
       { key: -1, text: '全部' },
       { key: OrderStatus.PENDING_PAYMENT, text: '待付款', info: '' },
-      { key: OrderStatus.PENDING_DELIVERY, text: '待发货', info: '' },
-      { key: OrderStatus.PENDING_RECEIPT, text: '待收货', info: '' },
+      { key: OrderStatus.PENDING_DELIVERY, text: '已付款', info: '' },
+      { key: OrderStatus.PENDING_RECEIPT, text: '已取消', info: '' },
       { key: OrderStatus.COMPLETE, text: '已完成', info: '' },
     ],
     curTab: -1,

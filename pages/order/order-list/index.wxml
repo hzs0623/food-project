@@ -57,8 +57,8 @@
 				<view class="price-total">
 					<text>总价</text>
 					<price fill price="{{order.totalAmount + ''}}" />
-					<text>，运费</text>
-					<price fill price="{{order.freightFee + ''}}" />
+					<!-- <text>，运费</text>
+					<price fill price="{{order.freightFee + ''}}" /> -->
 					<text decode>&nbsp;</text>
 					<text class="bold-price" decode="{{true}}">实付&nbsp;</text>
 					<price

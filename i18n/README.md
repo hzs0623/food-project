@@ -21,7 +21,6 @@ initI18n({ locals, lang: 'zh' }); // 初始化多语言
 import { getI18nInstance } from './i18n/core/index';
 
 const i18n = getI18nInstance();
-i18n.t('key');
 ```
 
 ### I18n 接口
@@ -35,7 +34,6 @@ Component({
   behaviors: [I18n],
 
   attached() {
-    this.t('key');
     this.getLocale();
     this.setLocale('zh-CN');
   },

@@ -35,17 +35,26 @@ Component({
   methods: {
     onClickGoods(e) {
       const { index } = e.currentTarget.dataset;
-      this.triggerEvent('click', { ...e.detail, index });
+      this.triggerEvent('click', {
+        ...e.detail,
+        index,
+      });
     },
 
     onAddCart(e) {
       const { index } = e.currentTarget.dataset;
-      this.triggerEvent('addcart', { ...e.detail, index });
+      this.triggerEvent('addcart', {
+        ...e.detail,
+        index,
+      });
     },
 
     onClickGoodsThumb(e) {
       const { index } = e.currentTarget.dataset;
-      this.triggerEvent('thumb', { ...e.detail, index });
+      this.triggerEvent('thumb', {
+        ...e.detail,
+        index,
+      });
     },
 
     init() {
@@ -54,7 +63,9 @@ Component({
 
     genIndependentID(id) {
       if (id) {
-        this.setData({ independentID: id });
+        this.setData({
+          independentID: id,
+        });
       } else {
         this.setData({
           independentID: `goods-list-${~~(Math.random() * 10 ** 8)}`,

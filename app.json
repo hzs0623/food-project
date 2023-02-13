@@ -7,7 +7,6 @@
     "pages/usercenter/address/edit/index",
     "pages/goods/list/index",
     "pages/goods/details/index",
-    "pages/goods/category/index",
     "pages/goods/search/index",
     "pages/goods/result/index",
     "pages/cart/index",
@@ -40,10 +39,6 @@
       {
         "pagePath": "pages/home/home",
         "text": "首页"
-      },
-      {
-        "pagePath": "pages/goods/category/index",
-        "text": "分类"
       },
       {
         "pagePath": "pages/cart/index",

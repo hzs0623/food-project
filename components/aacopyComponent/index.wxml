@@ -1,0 +1,3 @@
+<view class="{{ reverse ? 'name-ar' : 'name'}}">
+
+</view>

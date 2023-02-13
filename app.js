@@ -1,27 +1,23 @@
 import updateManager from './common/updateManager';
+import checkVersion from './common/checkVersion';
 
 // 初始化多语言
 import { initI18n } from './i18n/core/index';
 import { locals } from './i18n/language/index';
-const i18n = initI18n({ locals, lang: 'uly' });
+import WatchLang from './i18n/core/app';
 
 App({
-  globalData: {
-    reverse: false,
-    lang: {}, // 多语言信息
-  },
+  globalData: {},
   onLaunch: function () {
-    i18n.updateLang(() => {
-      this.updateLanguage();
+    const i18n = initI18n({
+      locals,
+      lang: 'zh',
     });
-    this.updateLanguage();
-  },
-  updateLanguage() {
-    this.globalData.reverse = i18n.getLang() === 'uly';
-    this.globalData.lang = i18n.getLanguage(); //根据当前系统语言获取对应文本
+    new WatchLang(this, i18n);
   },
 
   onShow: function () {
+    checkVersion();
     updateManager();
   },
 });

@@ -1,3 +1,12 @@
+<wxs module="utils">
+	var price = function (goods) {
+		return (goods.price / goods.originPrice * 10).toFixed(1)
+	}
+	module.exports= {
+		price: price
+	}
+</wxs>
+
 <view
   id="{{independentID}}"
   class="goods-card"
@@ -46,16 +55,7 @@
 				  price="{{goods.originPrice}}"
 				  type="delthrough"
 				/>
-				<t-icon
-				  class="goods-card__add-cart"
-				  prefix="wr"
-				  name="cartAdd"
-				  id="{{independentID}}-cart"
-				  data-id="{{independentID}}"
-				  catchtap="addCartHandle"
-				  size="48rpx"
-				  color="#FA550F"
-				/>
+				<view wx:if="{{ isValidityLinePrice }}" class="goods-card__origin-discount"> {{ utils.price(goods) }} 折</view>
 			</view>
 		</view>
 	</view>

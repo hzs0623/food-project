@@ -1,4 +1,6 @@
+// 当前页废弃
 import { getCategoryList } from '../../../services/good/fetchCategoryList';
+
 Page({
   data: {
     list: [],

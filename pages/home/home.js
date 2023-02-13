@@ -1,9 +1,8 @@
 import { fetchHome } from '../../services/home/home';
 import { fetchGoodsList } from '../../services/good/fetchGoods';
+import { getCategoryListData } from '../../services/good/fetchCategoryList';
 import Toast from 'tdesign-miniprogram/toast/index';
 import { I18nPage } from '../../i18n/core/index';
-
-const app = getApp();
 
 I18nPage({
   data: {
@@ -16,8 +15,9 @@ I18nPage({
     autoplay: true,
     duration: 500,
     interval: 5000,
-    navigation: { type: 'dots' },
-    reverse: app.globalData.reverse,
+    navigation: {
+      type: 'dots',
+    },
   },
 
   goodListPagination: {
@@ -58,12 +58,25 @@ I18nPage({
     this.setData({
       pageLoading: true,
     });
+
     fetchHome().then(({ swiper, tabList }) => {
-      this.setData({
-        tabList,
-        imgSrcs: swiper,
-        pageLoading: false,
-      });
+      const swipreData = JSON.parse(JSON.stringify(swiper));
+      if (this.data.reverse) {
+        this.setData({
+          tabList,
+          imgSrcs: swipreData.reverse(),
+          pageLoading: false,
+          current: swiper.length - 2,
+        });
+      } else {
+        this.setData({
+          tabList,
+          imgSrcs: swiper,
+          pageLoading: false,
+          current: 1,
+        });
+      }
+
       this.loadGoodsList(true);
     });
   },
@@ -84,7 +97,9 @@ I18nPage({
       });
     }
 
-    this.setData({ goodsListLoadStatus: 1 });
+    this.setData({
+      goodsListLoadStatus: 1,
+    });
 
     const pageSize = this.goodListPagination.num;
     let pageIndex =
@@ -95,15 +110,19 @@ I18nPage({
 
     try {
       const nextList = await fetchGoodsList(pageIndex, pageSize);
+      const catyList = await getCategoryListData();
       this.setData({
         goodsList: fresh ? nextList : this.data.goodsList.concat(nextList),
         goodsListLoadStatus: 0,
+        catyList,
       });
 
       this.goodListPagination.index = pageIndex;
       this.goodListPagination.num = pageSize;
     } catch (err) {
-      this.setData({ goodsListLoadStatus: 3 });
+      this.setData({
+        goodsListLoadStatus: 3,
+      });
     }
   },
 
@@ -124,7 +143,9 @@ I18nPage({
   },
 
   navToSearchPage() {
-    wx.navigateTo({ url: '/pages/goods/search/index' });
+    wx.navigateTo({
+      url: '/pages/goods/search/index',
+    });
   },
 
   navToActivityDetail({ detail }) {
@@ -134,13 +155,20 @@ I18nPage({
     });
   },
 
-  // 切换多语言
+  // 切换多语言, 重新请求过数据
   moveClick() {
-    const lang = !app.globalData.reverse ? 'uly' : 'zh';
-    this.setLocale(lang);
+    this.setLocale(!this.data.reverse ? 'uly' : 'zh');
+    this.clearData();
+    this.init();
+  },
+
+  clearData() {
     this.setData({
-      reverse: app.globalData.reverse,
-      lang: app.globalData.lang,
+      imgSrcs: [],
     });
+  },
+
+  selectCity(value) {
+    console.log(value);
   },
 });

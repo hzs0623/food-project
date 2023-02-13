@@ -46,21 +46,6 @@
   background: #cccccc;
 }
 
-.order-wrapper .store-wrapper {
-  width: 100%;
-  height: 96rpx;
-  box-sizing: border-box;
-  padding: 0 32rpx;
-  display: flex;
-  align-items: center;
-  font-size: 28rpx;
-  line-height: 40rpx;
-  color: #333333;
-  background-color: #ffffff;
-}
-.order-wrapper .store-wrapper .store-logo {
-  margin-right: 16rpx;
-}
 .order-wrapper .goods-wrapper {
   width: 100%;
   box-sizing: border-box;

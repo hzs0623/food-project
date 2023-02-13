@@ -279,10 +279,4 @@ Page({
       message: '您点击了联系客服',
     });
   },
-
-  onOrderInvoiceView() {
-    wx.navigateTo({
-      url: `/pages/order/invoice/index?orderNo=${this.orderNo}`,
-    });
-  },
 });

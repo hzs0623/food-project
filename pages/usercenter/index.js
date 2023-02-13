@@ -4,19 +4,13 @@ import Toast from 'tdesign-miniprogram/toast/index';
 const menuData = [
   [
     {
-      title: '收货地址',
-      tit: '',
-      url: '',
-      type: 'address',
-    },
-    {
       title: '优惠券',
       tit: '',
       url: '',
       type: 'coupon',
     },
     {
-      title: '积分',
+      title: '收藏',
       tit: '',
       url: '',
       type: 'point',
@@ -24,7 +18,7 @@ const menuData = [
   ],
   [
     {
-      title: '帮助中心',
+      title: '加盟代理',
       tit: '',
       url: '',
       type: 'help-center',
@@ -48,24 +42,17 @@ const orderTagInfos = [
     status: 1,
   },
   {
-    title: '待发货',
+    title: '已付款',
     iconName: 'deliver',
     orderNum: 0,
     tabType: 10,
     status: 1,
   },
   {
-    title: '待收货',
+    title: '已取消',
     iconName: 'package',
     orderNum: 0,
     tabType: 40,
-    status: 1,
-  },
-  {
-    title: '待评价',
-    iconName: 'comment',
-    orderNum: 0,
-    tabType: 60,
     status: 1,
   },
   {
@@ -89,15 +76,12 @@ const getDefaultData = () => ({
   customerServiceInfo: {},
   currAuthStep: 1,
   showKefu: true,
-  versionNo: '',
 });
 
 Page({
   data: getDefaultData(),
 
-  onLoad() {
-    this.getVersionInfo();
-  },
+  onLoad() {},
 
   onShow() {
     this.getTabBar().init();
@@ -113,21 +97,7 @@ Page({
 
   fetUseriInfoHandle() {
     fetchUserCenter().then(
-      ({
-        userInfo,
-        countsData,
-        orderTagInfos: orderInfo,
-        customerServiceInfo,
-      }) => {
-        // eslint-disable-next-line no-unused-expressions
-        menuData?.[0].forEach((v) => {
-          countsData.forEach((counts) => {
-            if (counts.type === v.type) {
-              // eslint-disable-next-line no-param-reassign
-              v.tit = counts.num;
-            }
-          });
-        });
+      ({ userInfo, orderTagInfos: orderInfo, customerServiceInfo }) => {
         const info = orderTagInfos.map((v, index) => ({
           ...v,
           ...orderInfo[index],
@@ -160,9 +130,9 @@ Page({
         Toast({
           context: this,
           selector: '#t-toast',
-          message: '你点击了帮助中心',
+          message: '加盟请拨打10086',
           icon: '',
-          duration: 1000,
+          duration: 3000,
         });
         break;
       }
@@ -170,7 +140,7 @@ Page({
         Toast({
           context: this,
           selector: '#t-toast',
-          message: '你点击了积分菜单',
+          message: '你点击了收藏菜单',
           icon: '',
           duration: 1000,
         });
@@ -228,13 +198,5 @@ Page({
     } else {
       this.fetUseriInfoHandle();
     }
-  },
-
-  getVersionInfo() {
-    const versionInfo = wx.getAccountInfoSync();
-    const { version, envVersion = __wxConfig } = versionInfo.miniProgram;
-    this.setData({
-      versionNo: envVersion === 'release' ? version : envVersion,
-    });
   },
 });

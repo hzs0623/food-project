@@ -1,106 +1,118 @@
-page {
-  box-sizing: border-box;
-  padding-bottom: calc(env(safe-area-inset-bottom) + 96rpx);
+.onewrap {
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
-
-.t-tabs.t-tabs--top .t-tabs__scroll {
-  border-bottom: none !important;
+.twowarap {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
-
-.home-page-header {
-  background: linear-gradient(#fff, #f5f5f5);
-}
-
-.home-page-container {
-  background: #f5f5f5;
-}
-
-.home-page-container,
-.home-page-header {
-  display: block;
+.home-page {
   padding: 0 24rpx;
 }
-
-.home-page-header .t-search__input-container {
-  border-radius: 32rpx !important;
-  height: 64rpx !important;
+.home-page .home-search {
+  height: 27px;
+  display: flex;
+  margin-bottom: 0.48rem;
 }
-
-.home-page-header .t-search__input {
-  font-size: 28rpx !important;
-  color: rgb(116, 116, 116) !important;
+.home-page .home-search-inner {
+  padding: 16rpx 24rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  background-color: #f3f3f3;
+  font-size: 12px;
+  color: #bbb;
+  border-radius: 32rpx;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
-
-.home-page-header .swiper-wrap {
-  margin-top: 20rpx;
+.home-page .home-search-inner text {
+  flex: 1;
+  padding-right: 16rpx;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
-
-.home-page-header .t-image__swiper {
-  width: 100%;
+.home-page .home-page__swiper {
   height: 300rpx;
-  border-radius: 10rpx;
+  width: 100%;
 }
-
-.home-page-container .t-tabs {
-  background: #f5f5f5;
+.swiper-mark {
+  height: 300rpx;
+  width: 100%;
 }
-
-.home-page-container .t-tabs .t-tabs-nav {
-  background-color: transparent;
-  line-height: 80rpx;
-  font-size: 28rpx;
-  color: #333;
+.t-swiper-nav__dots {
+  direction: ltr !important;
 }
-
-.home-page-container .t-tabs .t-tabs-scroll {
-  border: none !important;
+ 
+ .onewrap {
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
-
-/* 半个字 */
-.home-page-container .tab.order-nav .order-nav-item.scroll-width {
-  min-width: 165rpx;
+.twowarap {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
-.home-page-container .tab .order-nav-item.active {
-  color: #fa550f !important;
+.home-page-ar {
+  direction: rtl;
+  padding: 0 24rpx;
 }
-
-.home-page-container .tab .bottom-line {
-  border-radius: 4rpx;
+.home-page-ar .home-search {
+  height: 27px;
+  display: flex;
+  margin-bottom: 0.48rem;
 }
-
-.home-page-container .tab .order-nav-item.active .bottom-line {
-  background-color: #fa550f !important;
+.home-page-ar .home-search-inner {
+  padding: 16rpx 24rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  background-color: #f3f3f3;
+  font-size: 12px;
+  color: #bbb;
+  border-radius: 32rpx;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
-
-.home-page-container .tabs-external__item {
-  color: #666 !important;
-  font-size: 28rpx;
+.home-page-ar .home-search-inner text {
+  flex: 1;
+  padding-left: 16rpx;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
-
-.home-page-container .tabs-external__active {
-  color: #333333 !important;
-  font-size: 32rpx;
+.home-page-ar .home-page__swiper {
+  height: 300rpx;
+  width: 100%;
 }
-
-.home-page-container .tabs-external__track {
-  background-color: #fa4126 !important;
-  height: 6rpx !important;
-  border-radius: 4rpx !important;
-  width: 48rpx !important;
+.swiper-mark {
+  height: 300rpx;
+  width: 100%;
 }
-
-.t-tabs.t-tabs--top .t-tabs__item,
-.t-tabs.t-tabs--bottom .t-tabs__item {
-  height: 86rpx !important;
-}
-
-.home-page-container .goods-list-container {
-  background: #f5f5f5 !important;
-  margin-top: 24rpx;
-}
-.t-class-indicator,
-.loading-text {
-  color: #b9b9b9 !important;
+.t-swiper-nav__dots {
+  direction: ltr !important;
 }
 
 .move-text {

@@ -113,28 +113,6 @@ Page({
     return Promise.resolve();
   },
 
-  // 全选门店
-  // 注：实际场景时应该调用接口更改选中状态
-  selectStoreService({ storeId, isSelected }) {
-    const currentStore = this.data.cartGroupData.storeGoods.find(
-      (s) => s.storeId === storeId,
-    );
-    currentStore.isSelected = isSelected;
-    currentStore.promotionGoodsList.forEach((activity) => {
-      activity.goodsPromotionList.forEach((goods) => {
-        goods.isSelected = isSelected;
-      });
-    });
-    return Promise.resolve();
-  },
-
-  // 加购数量变更
-  // 注：实际场景时应该调用接口
-  changeQuantityService({ spuId, skuId, quantity }) {
-    this.findGoods(spuId, skuId).currentGoods.quantity = quantity;
-    return Promise.resolve();
-  },
-
   // 删除加购商品
   // 注：实际场景时应该调用接口
   deleteGoodsService({ spuId, skuId }) {
@@ -165,13 +143,6 @@ Page({
     return Promise.reject();
   },
 
-  // 清空失效商品
-  // 注：实际场景时应该调用接口
-  clearInvalidGoodsService() {
-    this.data.cartGroupData.invalidGoodItems = [];
-    return Promise.resolve();
-  },
-
   onGoodsSelect(e) {
     const {
       goods: { spuId, skuId },
@@ -193,77 +164,11 @@ Page({
     );
   },
 
-  onStoreSelect(e) {
-    const {
-      store: { storeId },
-      isSelected,
-    } = e.detail;
-    this.selectStoreService({ storeId, isSelected }).then(() =>
-      this.refreshData(),
-    );
-  },
-
-  onQuantityChange(e) {
-    const {
-      goods: { spuId, skuId },
-      quantity,
-    } = e.detail;
-    const { currentGoods } = this.findGoods(spuId, skuId);
-    const stockQuantity =
-      currentGoods.stockQuantity > 0 ? currentGoods.stockQuantity : 0; // 避免后端返回的是-1
-    // 加购数量超过库存数量
-    if (quantity > stockQuantity) {
-      // 加购数量等于库存数量的情况下继续加购
-      if (
-        currentGoods.quantity === stockQuantity &&
-        quantity - stockQuantity === 1
-      ) {
-        Toast({
-          context: this,
-          selector: '#t-toast',
-          message: '当前商品库存不足',
-        });
-        return;
-      }
-      Dialog.confirm({
-        title: '商品库存不足',
-        content: `当前商品库存不足，最大可购买数量为${stockQuantity}件`,
-        confirmBtn: '修改为最大可购买数量',
-        cancelBtn: '取消',
-      })
-        .then(() => {
-          this.changeQuantityService({
-            spuId,
-            skuId,
-            quantity: stockQuantity,
-          }).then(() => this.refreshData());
-        })
-        .catch(() => {});
-      return;
-    }
-    this.changeQuantityService({ spuId, skuId, quantity }).then(() =>
-      this.refreshData(),
-    );
-  },
-
-  goCollect() {
-    /** 活动肯定有一个活动ID，用来获取活动banner，活动商品列表等 */
-    const promotionID = '123';
-    wx.navigateTo({
-      url: `/pages/promotion-detail/index?promotion_id=${promotionID}`,
-    });
-  },
-
   goGoodsDetail(e) {
     const { spuId, storeId } = e.detail.goods;
     wx.navigateTo({
       url: `/pages/goods/details/index?spuId=${spuId}&storeId=${storeId}`,
     });
-  },
-
-  clearInvalidGoods() {
-    // 实际场景时应该调用接口清空失效商品
-    this.clearInvalidGoodsService().then(() => this.refreshData());
   },
 
   onGoodsDelete(e) {
@@ -282,16 +187,12 @@ Page({
     });
   },
 
+  /* 调用接口改变全选 */
   onSelectAll(event) {
     const { isAllSelected } = event?.detail ?? {};
-    Toast({
-      context: this,
-      selector: '#t-toast',
-      message: `${isAllSelected ? '取消' : '点击'}了全选按钮`,
-    });
-    // 调用接口改变全选
   },
 
+  // 点击结算按钮
   onToSettle() {
     const goodsRequestList = [];
     this.data.cartGroupData.storeGoods.forEach((store) => {
@@ -308,8 +209,5 @@ Page({
       JSON.stringify(goodsRequestList),
     );
     wx.navigateTo({ url: '/pages/order/order-confirm/index?type=cart' });
-  },
-  onGotoHome() {
-    wx.switchTab({ url: '/pages/home/home' });
   },
 });
