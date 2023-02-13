@@ -170,4 +170,13 @@ I18nPage({
   selectCity(value) {
     console.log(value);
   },
+
+  // 分类页
+  skipCatePage(e) {
+    console.log(e);
+    const spuId = 1234;
+    wx.navigateTo({
+      url: `/pages/categories/index?spuId=${spuId}`,
+    });
+  },
 });

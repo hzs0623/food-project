@@ -61,6 +61,12 @@
           "scene": null
         },
         {
+          "name": "示例页-分类列表",
+          "pathName": "pages/categories/index",
+          "query": "",
+          "scene": null
+        },
+        {
           "name": "示例页-个人中心",
           "pathName": "pages/usercenter/index",
           "query": "",

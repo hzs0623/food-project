@@ -1,0 +1,7 @@
+<view class="tab-comp">
+  <block wx:for="{{list}}" wx:for-item="item" wx:key="index">
+    <view class="tab-item" bind:tap="clickTab">
+      {{ item.label }}
+    </view>
+  </block>
+</view>

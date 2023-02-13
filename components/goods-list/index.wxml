@@ -1,5 +1,5 @@
 <view class="goods-list-wrap wr-class" id="{{independentID}}">
-	<block wx:for="{{goodsList}}" wx:for-item="item" wx:key="index">
+	<block wx:for="{{goodsList}}" wx:for-item="item" wx:key="index" data-index="{{index}}">
 		<goods-card
 		  id="{{independentID}}-gd-{{index}}"
 		  data="{{item}}"

@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "分类列表",
+  "usingComponents": {
+    "t-tabs": "tdesign-miniprogram/tabs/tabs",
+    "t-tab-panel": "tdesign-miniprogram/tabs/tab-panel",
+    "t-swiper": "tdesign-miniprogram/swiper/swiper",
+    "t-swiper-item": "tdesign-miniprogram/swiper/swiper-item",
+    "t-image": "/components/webp-image/index",
+    "goods-list": "/components/goods-list/index"
+  }
+}

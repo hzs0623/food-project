@@ -1,7 +1,7 @@
 <view class="{{ reverse ? 'category-comp-ar' : 'category-comp'}}">
   <view class="category-comp-inner">
-  	<block wx:for="{{goodsList}}" wx:for-item="item" wx:key="index">
-      <view class="category-comp-item">
+  	<block wx:for="{{goodsList}}" wx:for-item="item" wx:key="index"> 
+      <view class="category-comp-item" bind:tap="onTab">
         <t-image
           wx:if="{{ !!item.thumbnail }}"
           t-class="category-comp-inner__img"

@@ -2,6 +2,7 @@ export const getLifetimes = () => {
   return {
     lifetimes: {
       attached() {
+        console.log(111);
         const watchLangId = getApp().globalData.watchLang.watch(
           (globalData) => {
             this.setData(globalData);

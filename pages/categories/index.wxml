@@ -1,0 +1,40 @@
+<view class="{{ reverse ? 'cate-page-ar' : 'cate-page'}}">
+  <t-tabs  
+    t-class="t-tab" 
+    defaultValue="{{-1}}"
+    theme="tag" 
+    space-evenly="{{ false }}"
+    bind:change="onTabsChange"
+  >
+    <t-tab-panel 
+      wx:for="{{ tabList }}" 
+      wx:for-item="item" 
+      wx:key="index" 
+      label="{{ item.label }}" 
+      value="{{index}}" 
+    />
+  </t-tabs>
+
+  <t-swiper
+    wx:if="{{images.length > 0}}"
+    t-class="t-swiper"
+    current="{{current}}"
+    autoplay="{{ true }}"
+    duration="{{duration}}"
+    interval="{{interval}}"
+    navigation="{{navigation}}"
+  >
+    <t-swiper-item
+      wx:for="{{images}}"
+      wx:for-item="item"
+      wx:for-index="index"
+      wx:key="index"
+    >
+      <t-image src="{{item}}" t-class="swipe-img" />
+    </t-swiper-item>
+  </t-swiper>
+
+  <!-- 列表 -->
+  <goods-list wr-class="goods-list-container t-list" goodsList="{{goodsList}}" />
+
+</view>
