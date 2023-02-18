@@ -28,7 +28,9 @@
     "pages/order/delivery-detail/index",
     "pages/order/invoice/index",
     "pages/usercenter/name-edit/index",
-    "pages/categories/index"
+    "pages/categories/index",
+    "pages/store/index",
+    "pages/store-detail/index"
   ],
   "tabBar": {
     "custom": true,

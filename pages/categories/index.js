@@ -53,5 +53,9 @@ I18nPage({
 
   onTabsChange(e) {
     console.log(e.detail);
+
+    wx.navigateTo({
+      url: `/pages/store/index`,
+    });
   },
 });

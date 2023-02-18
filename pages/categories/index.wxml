@@ -1,19 +1,9 @@
 <view class="{{ reverse ? 'cate-page-ar' : 'cate-page'}}">
-  <t-tabs  
-    t-class="t-tab" 
-    defaultValue="{{-1}}"
-    theme="tag" 
-    space-evenly="{{ false }}"
-    bind:change="onTabsChange"
-  >
-    <t-tab-panel 
-      wx:for="{{ tabList }}" 
-      wx:for-item="item" 
-      wx:key="index" 
-      label="{{ item.label }}" 
-      value="{{index}}" 
-    />
-  </t-tabs>
+
+  <d-tab 
+    list="{{ tabList }}"
+    bind:click="onTabsChange"
+  />
 
   <t-swiper
     wx:if="{{images.length > 0}}"

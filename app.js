@@ -11,8 +11,8 @@ App({
   onLaunch: function () {
     const i18n = initI18n({
       locals,
-      // lang: 'zh',
-      lang: 'uly',
+      lang: 'zh',
+      // lang: 'uly',
     });
     new WatchLang(this, i18n);
   },

@@ -18,7 +18,7 @@ Component({
 
   methods: {
     clickTab(e) {
-      console.log(e);
+      this.triggerEvent('click', e);
     },
   },
 });

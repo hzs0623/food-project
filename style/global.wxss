@@ -273,7 +273,7 @@ textarea {
 }
 
 .page {
-  background: #fff;
+  background: #f5f5f5;
 }
 
 .color-price {
@@ -931,7 +931,8 @@ h6 {
   height: 40rpx;
   display: inline-block;
   vertical-align: sub;
-  background: url(https://cdn.ghsmpwalmart.com/saas/market/image/loadings.png) no-repeat;
+  background: url(https://cdn.ghsmpwalmart.com/saas/market/image/loadings.png)
+    no-repeat;
   background-size: 240rpx 40rpx;
   background-position: 0 0;
   animation: cirle-loadings 1s steps(6) infinite;
@@ -951,7 +952,8 @@ h6 {
   display: inline-block;
   width: 72rpx;
   height: 75rpx;
-  background: url('https://cdn.ghsmpwalmart.com/saas/market/image/page-loading-bc.png') no-repeat;
+  background: url('https://cdn.ghsmpwalmart.com/saas/market/image/page-loading-bc.png')
+    no-repeat;
   background-position: 0 0;
   background-size: 72rpx 75rpx;
 }
@@ -961,7 +963,8 @@ h6 {
   display: inline-block;
   width: 72rpx;
   height: 75rpx;
-  background: url('https://cdn.ghsmpwalmart.com/saas/market/image/page-loading-spin.png') no-repeat;
+  background: url('https://cdn.ghsmpwalmart.com/saas/market/image/page-loading-spin.png')
+    no-repeat;
   background-position: 0 0;
   background-size: 720rpx 75rpx;
   animation: animate-page-loading 0.4s steps(10) infinite;
@@ -1004,7 +1007,7 @@ h6 {
   font-size: 26rpx;
 }
 
-.grooms label>p {
+.grooms label > p {
   overflow: hidden;
   max-width: 400rpx;
   min-width: 120rpx;
@@ -1012,7 +1015,7 @@ h6 {
   text-overflow: ellipsis;
 }
 
-.grooms label>p::before {
+.grooms label > p::before {
   content: '';
   display: inline-block;
   position: absolute;
@@ -1025,7 +1028,7 @@ h6 {
   border-width: 1px 0 0 0;
 }
 
-.grooms label>p::after {
+.grooms label > p::after {
   content: '';
   display: inline-block;
   position: absolute;

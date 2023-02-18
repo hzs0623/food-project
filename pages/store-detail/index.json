@@ -1,0 +1,12 @@
+{
+  "navigationBarTitleText": "店铺详情",
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "t-swiper": "tdesign-miniprogram/swiper/swiper",
+    "t-swiper-item": "tdesign-miniprogram/swiper/swiper-item",
+    "t-image": "/components/webp-image/index",
+    "t-rate": "tdesign-miniprogram/rate/rate",
+    "d-nav": "/components/nav/index",
+    "combo": "/components/combo/index"
+  }
+}

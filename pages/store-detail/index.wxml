@@ -1,0 +1,97 @@
+<view class="store-detail-page">
+	<d-nav />
+
+	<view class="img">
+		<image src="https://cdn-we-retail.ym.tencent.com/tsr/goods/gh-1a.png" />
+	</view>
+
+	<view class="wrap">
+		<view class="store-detail">
+			<view class="title">
+				炭烧肥牛肉
+			</view>
+
+			<view class="info">
+				<view class="rate">
+					<t-rate
+						value="4"
+						count="{{5}}"
+						variant="filled"
+						size="12"
+						gap="2"
+					/>
+					{{ 4 }}
+				</view> 
+
+				<view>
+					79$/人
+				</view>
+			</view>
+
+			<t-swiper
+				wx:if="{{images.length > 0}}"
+				t-class="t-swiper"
+				current="{{current}}"
+				autoplay="{{ true }}"
+				duration="{{duration}}"
+				interval="{{interval}}"
+				navigation="{{navigation}}"
+			>
+				<t-swiper-item
+					wx:for="{{images}}"
+					wx:for-item="item"
+					wx:for-index="index"
+					wx:key="index"
+				>
+					<t-image src="{{item}}" t-class="swipe-img" />
+				</t-swiper-item>
+			</t-swiper>
+
+			<view class="site">
+				南山区西丽街道石鼓路3004号商务中心B座3号7楼401
+				<span>距您7.7km</span>
+			</view>
+		</view>
+
+		<view class="coupon">
+			<view class="commontitle">
+				<span></span> 超值卷
+			</view>
+
+			<view class="coupon-item">
+				<view class="coupon-item-content">
+					<view class="coupon-item-title">
+						50元代金卷
+					</view>
+					<view class="coupon-explain">
+						周一到周五10:00-22:00 
+						<span>不限张数</span>
+					</view>
+
+					<view class="coupon-price">
+						￥50
+					</view>
+				</view>
+				<view class="coupon-item-right">
+					<view class="coupon-btn">
+						抢购
+					</view>
+				</view>
+			</view>
+
+		</view>
+
+		<!-- 套餐列表 -->
+		<view class="set-meal">
+			<view class="commontitle">
+				<span></span> 
+				到店套餐
+			</view>
+
+			<block wx:for="{{comboList}}" wx:key="index">
+				<combo item="{{ item }}" />
+			</block>
+		</view>
+	</view>
+</view>
+

@@ -1,10 +1,9 @@
 {
-  "navigationBarTitleText": "分类列表",
+  "navigationBarTitleText": "店铺列表",
   "usingComponents": {
     "t-swiper": "tdesign-miniprogram/swiper/swiper",
     "t-swiper-item": "tdesign-miniprogram/swiper/swiper-item",
     "t-image": "/components/webp-image/index",
-    "d-tab": "./components/tab/index",
-    "goods-list": "/components/goods-list/index"
+    "goods-store": "/components/goods-store/index"
   }
 }
