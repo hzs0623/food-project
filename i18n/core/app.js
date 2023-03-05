@@ -1,10 +1,17 @@
 class Watch {
   constructor() {
     this.watchs = [];
+
+    this.flag = false;
   }
 
-  async watch(fn) {
+  watch(fn) {
     const id = this.watchs.push(fn);
+
+    setTimeout(() => {
+      fn(getApp().globalData);
+    }, 100);
+
     return id - 1;
   }
 
@@ -29,14 +36,15 @@ class appLang {
 
   init() {
     this.app.globalData.watchLang = new Watch();
+
+    this.updateGlobalData();
+
     this.i18n.watch(() => {
       this.updateGlobalData();
+      this.app.globalData.watchLang.forEach((fn) => {
+        fn(this.app.globalData);
+      });
     });
-
-    // 初始化让其他回调都推入队列中
-    setTimeout(() => {
-      this.updateGlobalData();
-    }, 200);
   }
 
   updateGlobalData() {
@@ -44,9 +52,6 @@ class appLang {
     this.app.globalData.reverse = i18n.getLang() === 'uly';
     this.app.globalData.language = i18n.getLanguage();
     this.app.globalData.lang = i18n.getLang();
-    this.app.globalData.watchLang.forEach((fn) => {
-      fn(this.app.globalData);
-    });
   }
 }
 

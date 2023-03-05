@@ -10,6 +10,7 @@ export const getLifetimes = () => {
             }
           },
         );
+
         this.setData({ watchLangId });
       },
       detached() {

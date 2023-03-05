@@ -2,6 +2,8 @@ import Toast from 'tdesign-miniprogram/toast/index';
 import { fetchGood } from '../../../services/good/fetchGood';
 import { fetchActivityList } from '../../../services/activity/fetchActivityList';
 
+import { I18nPage } from '../../../i18n/core/index';
+
 import { cdnBase } from '../../../config/index';
 
 const imgPrefix = `${cdnBase}/`;
@@ -17,7 +19,7 @@ const obj2Params = (obj = {}, encode = false) => {
   return result.join('&');
 };
 
-Page({
+I18nPage({
   data: {
     commentsList: [],
     commentsStatistics: {
