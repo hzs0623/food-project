@@ -20,13 +20,7 @@ Component({
 
   data: {
     currentAdInfo: {
-      // adcode: '440305',
       city: '无法获取地区',
-      // district: '南山区',
-      // location: { lat: 22.533191, lng: 113.930478 },
-      // name: '中国,广东省,深圳市,南山区',
-      // nation: '中国',
-      // province: '广东省',
     },
     cityVisible: false,
   },
@@ -39,7 +33,7 @@ Component({
         this.setData(addMapData);
         return;
       }
-      console.log(this.data);
+      // console.log(this.data);
 
       wx.getLocation({
         success: (res) => {

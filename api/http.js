@@ -1,7 +1,7 @@
 // https://developers.weixin.qq.com/miniprogram/dev/api/network/request/wx.request.html 文档
 
-const BASE_URL = `https://test.com/`;
-const TOKEN_KEY = `wx-token`;
+const BASE_URL = `http://47.115.53.1:8090`;
+// const TOKEN_KEY = `wx-token`;
 
 function request(option = {}) {
   return new Promise((resolve, reject) => {
@@ -16,17 +16,16 @@ function request(option = {}) {
         data: {}, // 请求参数
         header: {
           'content-type': 'application/json',
-          token: wx.getStorageSync(TOKEN_KEY),
+          // token: wx.getStorageSync(TOKEN_KEY),
         },
         success(res) {
-          console.log(res); // res.cookies
           resolve(res.data);
         },
         fail(err) {
           reject(err);
         },
         complete(v) {
-          console.log('都会触发', v);
+          //
         },
       },
       option,

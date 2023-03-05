@@ -1,8 +1,9 @@
-import { fetchHome } from '../../services/home/home';
 import { fetchGoodsList } from '../../services/good/fetchGoods';
-import { getCategoryListData } from '../../services/good/fetchCategoryList';
 import Toast from 'tdesign-miniprogram/toast/index';
 import { I18nPage } from '../../i18n/core/index';
+
+import { getCateList, getHomeSwipre } from '../../api/goods';
+import { login } from '../../api/login/index';
 
 I18nPage({
   data: {
@@ -22,11 +23,7 @@ I18nPage({
 
   goodListPagination: {
     index: 0,
-    num: 20,
-  },
-
-  privateData: {
-    tabIndex: 0,
+    pageSize: 20,
   },
 
   onShow() {
@@ -35,10 +32,14 @@ I18nPage({
 
   onLoad() {
     this.init();
+
+    login();
   },
 
+  // 请求下一页数据
   onReachBottom() {
     if (this.data.goodsListLoadStatus === 0) {
+      // 还有下一页数据
       this.loadGoodsList();
     }
   },
@@ -51,45 +52,40 @@ I18nPage({
     this.loadHomePage();
   },
 
-  loadHomePage() {
+  async loadHomePage() {
     wx.stopPullDownRefresh();
 
     this.setData({
       pageLoading: true,
     });
 
-    fetchHome().then(({ swiper, tabList }) => {
-      const swipreData = JSON.parse(JSON.stringify(swiper));
-      if (this.data.reverse) {
-        this.setData({
-          tabList,
-          imgSrcs: swipreData.reverse(),
-          pageLoading: false,
-          current: swiper.length - 2,
-        });
-      } else {
-        this.setData({
-          tabList,
-          imgSrcs: swiper,
-          pageLoading: false,
-          current: 1,
-        });
-      }
+    const [swiperList, catyList] = await Promise.all([
+      getHomeSwipre(),
+      getCateList({
+        pageNum: 1,
+        pageSize: 20,
+      }),
+    ]);
 
-      this.loadGoodsList(true);
+    this.setData({
+      imgSrcs: swiperList,
+      pageLoading: false,
+      current: 1,
+      catyList,
     });
-  },
 
-  tabChangeHandle(e) {
-    this.privateData.tabIndex = e.detail;
     this.loadGoodsList(true);
   },
 
+  // 重试
   onReTry() {
     this.loadGoodsList();
   },
 
   async loadGoodsList(fresh = false) {
+    this.goodListPagination.pageIndex = fresh
+      ? 0
+      : this.goodListPagination.pageIndex + 1;
     if (fresh) {
       wx.pageScrollTo({
         scrollTop: 0,
@@ -97,27 +93,18 @@ I18nPage({
     }
 
     this.setData({
-      goodsListLoadStatus: 1,
+      goodsListLoadStatus: 1, // 加载中
     });
 
-    const pageSize = this.goodListPagination.num;
-    let pageIndex =
-      this.privateData.tabIndex * pageSize + this.goodListPagination.index + 1;
-    if (fresh) {
-      pageIndex = 0;
-    }
-
     try {
-      const nextList = await fetchGoodsList(pageIndex, pageSize);
-      const catyList = await getCategoryListData();
+      const nextList = await fetchGoodsList(
+        this.goodListPagination.pageIndex,
+        this.goodListPagination.pageSize,
+      );
       this.setData({
         goodsList: fresh ? nextList : this.data.goodsList.concat(nextList),
-        goodsListLoadStatus: 0,
-        catyList,
+        goodsListLoadStatus: 0, // 请求完成
       });
-
-      this.goodListPagination.index = pageIndex;
-      this.goodListPagination.num = pageSize;
     } catch (err) {
       this.setData({
         goodsListLoadStatus: 3,
