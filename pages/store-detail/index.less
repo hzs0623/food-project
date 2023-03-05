@@ -1,0 +1,124 @@
+.store-detail-page {
+  image {
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .wrap {
+    padding: 0 20rpx;
+
+    .common {
+      padding: 20rpx;
+      transform: translateY(-140px);
+    }
+
+    .store-detail {
+      .common;
+      background: #fff;
+      border-radius: 32rpx;
+
+      .title {
+        font-weight: bold;
+      }
+
+      .info {
+        height: 14px;
+        line-height: 14px;
+        display: flex;
+        align-items: center;
+        font-size: 12px;
+        .rate {
+          display: flex;
+          align-items: center;
+          color: #ffc51c;
+          margin-right: 20px;
+        }
+      }
+
+      .t-swiper {
+        margin-top: 8px;
+        border-radius: 32rpx;
+        image {
+          border-radius: 32rpx;
+        }
+      }
+
+      .site {
+        margin-top: 8px;
+        font-size: 12px;
+        font-weight: bold;
+        .twowarap;
+        span {
+          font-weight: 400;
+          color: #ccc;
+        }
+      }
+    }
+
+    .commontitle {
+      margin-bottom: 20rpx;
+      display: flex;
+      align-items: center;
+      height: 14px;
+      line-height: 14px;
+      font-size: 14px;
+
+      span {
+        display: inline-block;
+        margin-right: 4px;
+        height: 100%;
+        width: 2px;
+        background-color: #333;
+      }
+    }
+
+    // 优惠卷
+    .coupon {
+      margin-top: 10px;
+      .common;
+
+      .coupon-item {
+        padding: 20rpx;
+        background-color: #fff;
+        font-size: 12px;
+        display: flex;
+        justify-content: space-between;
+
+        .coupon-item-content {
+          line-height: 16px;
+          .coupon-item-title {
+            font-weight: bold;
+          }
+          .coupon-explain {
+            color: #ccc;
+          }
+          .coupon-price {
+            color: #fd6303;
+            font-weight: bold;
+          }
+        }
+        .coupon-item-right {
+          display: flex;
+          align-items: center;
+        }
+        .coupon-btn {
+          background-color: #fd6303;
+          padding: 4px 10px;
+          border-radius: 32rpx;
+          color: #fff;
+          font-size: 12px;
+        }
+      }
+    }
+
+    // 套餐
+    .set-meal {
+      margin-top: 10px;
+      .common;
+    }
+  }
+}
+
+page {
+  background-color: #f5f5f5;
+}

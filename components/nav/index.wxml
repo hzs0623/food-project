@@ -1,0 +1,11 @@
+<view class='nav-wrap' style='top: {{top}}rpx; height: {{height}}rpx; line-height: {{height}}rpx'> 
+  <view class='nav-title'> 
+    <t-icon
+      name="chevron-left"
+      color="#333"
+      size="30px"
+      bind:click="goBack"
+    />
+    <view class='nav-title-text'>{{title}}</view>
+  </view>
+</view>

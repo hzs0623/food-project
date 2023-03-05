@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "店铺列表",
+  "usingComponents": {
+    "t-swiper": "tdesign-miniprogram/swiper/swiper",
+    "t-swiper-item": "tdesign-miniprogram/swiper/swiper-item",
+    "t-image": "/components/webp-image/index",
+    "goods-store": "/components/goods-store/index"
+  }
+}

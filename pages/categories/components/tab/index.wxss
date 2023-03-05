@@ -1,0 +1,68 @@
+.onewrap {
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.twowarap {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.tab-comp {
+  display: flex;
+  overflow-x: scroll;
+  font-size: 12px;
+}
+.tab-comp .tab-item {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  padding: 4px 10px;
+  margin: 0 4px;
+  background-color: #ccc;
+  color: #fff;
+  border-radius: 32rpx;
+}
+::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+ 
+ .onewrap {
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.twowarap {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.tab-comp-ar {
+  direction: rtl;
+  display: flex;
+  overflow-x: scroll;
+  font-size: 12px;
+}
+.tab-comp-ar .tab-item {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  padding: 4px 10px;
+  margin: 0 4px;
+  background-color: #ccc;
+  color: #fff;
+  border-radius: 32rpx;
+}
+::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+  color: transparent;
+}

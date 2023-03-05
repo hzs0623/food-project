@@ -1,0 +1,23 @@
+<view class="container">
+
+
+  <image src="{{item.image}}" />
+
+  <view class="content">
+    <view class="title">
+        {{ item.title }}
+    </view>
+
+    <view class="info">
+      周一到周五 免预约
+    </view>
+
+    <view class="price">
+      ￥{{ item.price }}
+    </view>
+  </view>
+
+  <view class="btn">
+    <span>抢购</span>
+  </view>
+</view>

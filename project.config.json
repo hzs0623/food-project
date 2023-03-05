@@ -61,6 +61,12 @@
           "scene": null
         },
         {
+          "name": "示例页-分类列表",
+          "pathName": "pages/categories/index",
+          "query": "",
+          "scene": null
+        },
+        {
           "name": "示例页-个人中心",
           "pathName": "pages/usercenter/index",
           "query": "",
@@ -124,6 +130,18 @@
           "name": "示例页-发票详情",
           "pathName": "pages/order/invoice/index",
           "query": "orderNo=132381532610540875",
+          "scene": null
+        },
+        {
+          "name": "示例页-店铺列表",
+          "pathName": "pages/store/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "示例页-店铺详情",
+          "pathName": "pages/store-detail/index",
+          "query": "",
           "scene": null
         }
       ]

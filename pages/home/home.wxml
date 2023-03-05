@@ -11,21 +11,21 @@
       class="home-search-inner"
       bind:tap="navToSearchPage"
     > 
-      <text>iphone 13 火热发售中</text>
+      <text>请输入搜索内容</text>
       <t-icon prefix="wr" name="search" size="40rpx" color="#bbb" />
     </view>
   </view>
 
   <t-swiper wx:if="{{imgSrcs.length > 0}}" current="{{current}}" autoplay="{{autoplay}}" duration="{{duration}}" interval="{{interval}}" navigation="{{navigation}}">
     <t-swiper-item wx:for="{{imgSrcs}}" wx:key="index">
-      <t-image src="{{item.img}}" t-class="home-page__swiper" bind:tap="navToActivityDetail" />
+      <t-image src="{{item.fileUrl}}" t-class="home-page__swiper" bind:tap="navToActivityDetail" />
     </t-swiper-item>
   </t-swiper>
 
   <view wx:if="{{ imgSrcs.length === 0 }}" class="swiper-mark"></view>
 
   <!-- 分类列表 -->
-  <category-list goodsList="{{catyList}}" />
+  <category-list goodsList="{{catyList}}" bindchangeCate="skipCatePage" />
 
   <goods-list wr-class="goods-list-container" goodsList="{{goodsList}}" bind:click="goodListClickHandle" bind:addcart="goodListAddCartHandle" />
   <load-more list-is-empty="{{!goodsList.length}}" status="{{goodsListLoadStatus}}" bind:retry="onReTry" />

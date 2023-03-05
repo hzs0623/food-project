@@ -1,0 +1,19 @@
+<view class="store-item" bind:tap="onClick">
+  <view class="left">
+    <t-image wx:if="{{ item.image }}" src="{{item.image}}" t-class="swipe-img" />
+  </view>
+
+  <view class="right">
+      <view class="title">{{ item.title }}</view>
+      <view class="info">		
+        <t-rate
+          value="4"
+          count="{{5}}"
+          variant="filled"
+          size="12"
+          gap="2"
+        />
+      </view>
+      <view class="site">距离 4.5km</view>
+  </view> 
+</view>

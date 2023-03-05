@@ -36,8 +36,8 @@
   font-size: 12px;
   top: 60%;
 }
-
-.onewrap {
+ 
+ .onewrap {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
   overflow: hidden;

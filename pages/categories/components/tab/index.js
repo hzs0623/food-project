@@ -1,10 +1,10 @@
-import { I18n } from '../../i18n/core/index';
+import { I18n } from '../../../../i18n/core/index';
 
 Component({
   behaviors: [I18n],
 
   properties: {
-    goodsList: {
+    list: {
       type: Array,
       value: [],
     },
@@ -17,8 +17,8 @@ Component({
   data: {},
 
   methods: {
-    onTab(e) {
-      this.triggerEvent('changeCate', e);
+    clickTab(e) {
+      this.triggerEvent('click', e);
     },
   },
 });

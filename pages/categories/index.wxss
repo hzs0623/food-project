@@ -1,0 +1,72 @@
+.onewrap {
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.twowarap {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.cate-page {
+  min-height: 100vh;
+  padding: 0 20rpx;
+}
+.cate-page .t-tab {
+  margin-top: 20rpx;
+}
+.cate-page .t-tab .t-tabs__scroll--top:after {
+  display: none;
+}
+.cate-page .t-tab .t-tabs__item--tag:not(.t-tabs__item--evenly):first-child {
+  margin: 0;
+}
+.cate-page .t-tab .t-tabs__item--tag:not(.t-tabs__item--evenly):last-child {
+  padding-right: 0;
+}
+.cate-page .t-swiper {
+  margin-top: 20rpx;
+}
+.cate-page .t-list {
+  margin-top: 20rpx;
+}
+ 
+ .onewrap {
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.twowarap {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.cate-page-ar {
+  direction: rtl;
+  min-height: 100vh;
+  padding: 0 20rpx;
+}
+.cate-page-ar .t-tab {
+  margin-top: 20rpx;
+}
+.cate-page-ar .t-tab .t-tabs__scroll--top:after {
+  display: none;
+}
+.cate-page-ar .t-tab .t-tabs__item--tag:not(.t-tabs__item--evenly):first-child {
+  margin: 0;
+}
+.cate-page-ar .t-tab .t-tabs__item--tag:not(.t-tabs__item--evenly):last-child {
+  padding-left: 0;
+}
+.cate-page-ar .t-swiper {
+  margin-top: 20rpx;
+}
+.cate-page-ar .t-list {
+  margin-top: 20rpx;
+}

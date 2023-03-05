@@ -1,0 +1,37 @@
+<view class="store-page">
+  <view class="header">
+    <span style="background: {{  themeColor }}">理发店</span>
+  </view>
+
+  <view>
+    <t-swiper
+      wx:if="{{images.length > 0}}"
+      t-class="t-swiper"
+      current="{{current}}"
+      autoplay="{{ true }}"
+      duration="{{duration}}"
+      interval="{{interval}}"
+      navigation="{{navigation}}"
+    >
+      <t-swiper-item
+        wx:for="{{images}}"
+        wx:for-item="item"
+        wx:for-index="index"
+        wx:key="index"
+      >
+        <t-image src="{{item}}" t-class="swipe-img" />
+      </t-swiper-item>
+    </t-swiper>
+  </view>
+
+  <view class="title">
+    <span></span>
+    店铺
+  </view>
+
+  <view>
+    <block wx:for="{{ list }}" wx:key="index">
+      <goods-store item="{{item}}" index="{{index}}" bind:click="handleSkip"></goods-store>
+    </block>
+  </view>
+</view>
