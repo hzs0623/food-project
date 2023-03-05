@@ -1,4 +1,4 @@
-import { I18n } from '../i18n/core/index';
+// import { I18n } from '../i18n/core/index';
 
 const listData = [
   {
@@ -19,7 +19,7 @@ const listData = [
 ];
 
 Component({
-  behaviors: [I18n],
+  // behaviors: [I18n],
   data: {
     active: 0,
     list: [],
@@ -30,30 +30,7 @@ Component({
   },
 
   methods: {
-    onChange(event) {
-      this.setData({ active: event.detail.value });
-      wx.switchTab({
-        url: this.data.list[event.detail.value].url.startsWith('/')
-          ? this.data.list[event.detail.value].url
-          : `/${this.data.list[event.detail.value].url}`,
-      });
-    },
-
-    _watchLanuage() {
-      const list = JSON.parse(JSON.stringify(listData));
-      if (this.data.reverse) {
-        this.setData({
-          list: list.reverse(),
-          active: list.length - 1,
-        });
-      } else {
-        this.setData({
-          list,
-          active: 0,
-        });
-      }
-    },
-
+    // 注册时加载
     init() {
       const page = getCurrentPages().pop();
       const route = page ? page.route.split('?')[0] : '';
@@ -63,6 +40,21 @@ Component({
           `${route}`,
       );
       this.setData({ active });
+    },
+
+    onChange(event) {
+      let activeSrc = event.detail.value;
+      this.setData({ active: event.detail.value });
+      wx.switchTab({
+        url: `/${this.data.list[activeSrc].url}`,
+      });
+    },
+
+    _watchLanuage() {
+      const list = JSON.parse(JSON.stringify(listData));
+      this.setData({
+        list,
+      });
     },
   },
 });
