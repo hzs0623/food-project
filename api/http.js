@@ -9,6 +9,7 @@ function request(option = {}) {
       reject('没有请求url地址');
       return;
     }
+
     const config = Object.assign(
       {
         timeout: 2000, // 超时时间 2000ms
@@ -22,11 +23,10 @@ function request(option = {}) {
           resolve(res.data);
         },
         fail(err) {
-          reject(err);
+          console.log(err);
+          resolve({});
         },
-        complete(v) {
-          //
-        },
+        complete(v) {},
       },
       option,
     );
