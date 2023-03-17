@@ -14,10 +14,6 @@ Component({
     },
   },
 
-  // data: {
-  //   list: [],
-  // },
-
   methods: {
     change(e) {
       const { index } = e.currentTarget.dataset;

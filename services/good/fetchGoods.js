@@ -8,10 +8,10 @@ function mockFetchGoodsList(pageIndex = 1, pageSize = 20) {
     getGoodsList(pageIndex, pageSize).map((item) => {
       return {
         spuId: item.spuId,
-        thumb: item.primaryImage,
+        thumb: item.fileUrl,
         title: item.title,
-        price: item.minSalePrice,
-        originPrice: item.maxLinePrice,
+        price: item.actualCouponPrice,
+        originPrice: item.costCouponPrice,
         tags: item.spuTagList.map((tag) => tag.title),
       };
     }),

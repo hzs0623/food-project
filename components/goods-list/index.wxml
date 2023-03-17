@@ -7,9 +7,7 @@
 		  thresholds="{{thresholds}}"
 		  class="goods-card-inside"
 		  data-index="{{index}}"
-		  bind:thumb="onClickGoodsThumb"
 		  bind:click="onClickGoods"
-		  bind:add-cart="onAddCart"
 		/>
 	</block>
 </view>

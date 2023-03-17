@@ -14,8 +14,7 @@
 	<view wx:if="{{type === 'delthrough'}}" class="line" style="height:{{utils.addUnit(lineThroughWidth)}};" />
 	<view class="symbol symbol-class">{{symbol}}</view>
 	<view class="pprice">
-		<view class="integer inline">{{pArr[0]}}</view>
-		<view wx:if="{{pArr[1]}}" class="decimal inline {{decimalSmaller ? 'smaller' : ''}} decimal-class">.{{pArr[1]}}</view>
+		<view class="integer inline">{{ price }}</view>
 	</view>
 </view>
 

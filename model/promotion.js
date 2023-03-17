@@ -5,10 +5,10 @@ export function getPromotion(baseID = 0, length = 10) {
     list: getGoodsList(baseID, length).map((item) => {
       return {
         spuId: item.spuId,
-        thumb: item.primaryImage,
+        thumb: item.fileUrl,
         title: item.title,
-        price: item.minSalePrice,
-        originPrice: item.maxLinePrice,
+        price: item.actualCouponPrice,
+        originPrice: item.costCouponPrice,
         tags: item.spuTagList.map((tag) => ({ title: tag.title })),
       };
     }),

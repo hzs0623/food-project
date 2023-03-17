@@ -15,7 +15,6 @@ Page({
       abnormalDeliveryGoodsList: [], // 不能正常配送商品
       inValidGoodsList: [], // 失效或者库存不足
       limitGoodsList: [], //限购商品
-      couponList: [], //门店优惠券信息
     }, // 获取结算页详情 data
     orderCardList: [], // 仅用于商品卡片展示
     couponsShow: false, // 显示优惠券的弹框
@@ -29,22 +28,18 @@ Page({
       contentType: '', //发票内容 1-明细 2-类别
     },
     goodsRequestList: [],
-    userAddressReq: null,
     popupShow: false, // 不在配送范围 失效 库存不足 商品展示弹框
     notesPosition: 'center',
-    storeInfoList: [],
     storeNoteIndex: 0, //当前填写备注门店index
     promotionGoodsList: [], //当前门店商品列表(优惠券)
-    couponList: [], //当前门店所选优惠券
-    submitCouponList: [], //所有门店所选优惠券
     currentStoreId: null, //当前优惠券storeId
-    userAddress: null,
   },
 
   payLock: false,
   noteInfo: [],
   tempNoteInfo: [],
   onLoad(options) {
+    console.log(options);
     this.setData({
       loading: true,
     });
@@ -69,16 +64,11 @@ Page({
     const { goodsRequestList } = this;
     this.handleOptionsParams({ goodsRequestList });
   },
-  // 处理不同情况下跳转到结算页时需要的参数
-  handleOptionsParams(options, couponList) {
-    let { goodsRequestList } = this; // 商品列表
-    let { userAddressReq } = this; // 收货地址
 
-    const storeInfoList = []; // 门店列表
-    // 如果是从地址选择页面返回，则使用地址显选择页面新选择的地址去获取结算数据
-    if (options.userAddressReq) {
-      userAddressReq = options.userAddressReq;
-    }
+  // 处理不同情况下跳转到结算页时需要的参数
+  handleOptionsParams(options) {
+    let goodsRequestList;
+
     if (options.type === 'cart') {
       // 从购物车跳转过来时，获取传入的商品列表数据
       const goodsRequestListJson = wx.getStorageSync('order.goodsRequestList');
@@ -86,46 +76,26 @@ Page({
     } else if (typeof options.goodsRequestList === 'string') {
       goodsRequestList = JSON.parse(options.goodsRequestList);
     }
-    //获取结算页请求数据列表
-    const storeMap = {};
-    goodsRequestList.forEach((goods) => {
-      if (!storeMap[goods.storeId]) {
-        storeInfoList.push({
-          storeId: goods.storeId,
-          storeName: goods.storeName,
-        });
-        storeMap[goods.storeId] = true;
-      }
-    });
+
     this.goodsRequestList = goodsRequestList;
-    this.storeInfoList = storeInfoList;
-    const params = {
-      goodsRequestList,
-      storeInfoList,
-      userAddressReq,
-      couponList,
-    };
-    fetchSettleDetail(params).then(
-      (res) => {
-        this.setData({
-          loading: false,
-        });
-        this.initData(res.data);
-      },
-      () => {
-        //接口异常处理
-        this.handleError();
-      },
-    );
+
+    this.setData({ loading: false });
+    this.initData(goodsRequestList);
+
+    // fetchSettleDetail(params).then(
+    //   (res) => {
+    //   },
+    //   () => {
+    //     //接口异常处理
+    //     this.handleError();
+    //   },
+    // );
   },
+
   initData(resData) {
     // 转换商品卡片显示数据
     const data = this.handleResToGoodsCard(resData);
-    this.userAddressReq = resData.userAddress;
 
-    if (resData.userAddress) {
-      this.setData({ userAddress: resData.userAddress });
-    }
     this.setData({ settleDetailData: data });
     this.isInvalidOrder(data);
   },
@@ -205,10 +175,9 @@ Page({
     };
   },
   handleResToGoodsCard(data) {
+    return console.log(data);
     // 转换数据 符合 goods-card展示
     const orderCardList = []; // 订单卡片列表
-    const storeInfoList = [];
-    const submitCouponList = []; //使用优惠券列表;
 
     data.storeGoodsList &&
       data.storeGoodsList.forEach((ele) => {
@@ -236,21 +205,12 @@ Page({
           });
         });
 
-        storeInfoList.push({
-          storeId: ele.storeId,
-          storeName: ele.storeName,
-          remark: '',
-        });
-        submitCouponList.push({
-          storeId: ele.storeId,
-          couponList: ele.couponList || [],
-        });
         this.noteInfo.push('');
         this.tempNoteInfo.push('');
         orderCardList.push(orderCard);
       });
 
-    this.setData({ orderCardList, storeInfoList, submitCouponList });
+    this.setData({ orderCardList });
     return data;
   },
 
@@ -283,13 +243,11 @@ Page({
   },
   onNoteConfirm() {
     // 备注信息 确认按钮
-    const { storeInfoList, storeNoteIndex } = this.data;
+    const { storeNoteIndex } = this.data;
     this.tempNoteInfo[storeNoteIndex] = this.noteInfo[storeNoteIndex];
-    storeInfoList[storeNoteIndex].remark = this.noteInfo[storeNoteIndex];
 
     this.setData({
       dialogShow: false,
-      storeInfoList,
     });
   },
   onNoteCancel() {
@@ -330,26 +288,9 @@ Page({
   },
   // 提交订单
   submitOrder() {
-    const {
-      settleDetailData,
-      userAddressReq,
-      invoiceData,
-      storeInfoList,
-      submitCouponList,
-    } = this.data;
+    const { settleDetailData, invoiceData } = this.data;
     const { goodsRequestList } = this;
 
-    if (!userAddressReq && !settleDetailData.userAddress) {
-      Toast({
-        context: this,
-        selector: '#t-toast',
-        message: '请添加收货地址',
-        duration: 2000,
-        icon: 'help-circle',
-      });
-
-      return;
-    }
     if (
       this.payLock ||
       !settleDetailData.settleType ||
@@ -358,15 +299,10 @@ Page({
       return;
     }
     this.payLock = true;
-    const resSubmitCouponList = this.handleCouponList(submitCouponList);
     const params = {
-      userAddressReq: settleDetailData.userAddress || userAddressReq,
       goodsRequestList: goodsRequestList,
-      userName: settleDetailData.userAddress.name || userAddressReq.name,
       totalAmount: settleDetailData.totalPayAmount, //取优惠后的结算金额
       invoiceRequest: null,
-      storeInfoList,
-      couponList: resSubmitCouponList,
     };
     if (invoiceData && invoiceData.email) {
       params.invoiceRequest = invoiceData;
@@ -475,23 +411,7 @@ Page({
     });
   },
 
-  onCoupons(e) {
-    const { submitCouponList, currentStoreId } = this.data;
-    const { goodsRequestList } = this;
-    const { selectedList } = e.detail;
-    const tempSubmitCouponList = submitCouponList.map((storeCoupon) => {
-      return {
-        couponList:
-          storeCoupon.storeId === currentStoreId
-            ? selectedList
-            : storeCoupon.couponList,
-      };
-    });
-    const resSubmitCouponList = this.handleCouponList(tempSubmitCouponList);
-    //确定选择优惠券
-    this.handleOptionsParams({ goodsRequestList }, resSubmitCouponList);
-    this.setData({ couponsShow: false });
-  },
+  onCoupons(e) {},
   onOpenCoupons(e) {
     const { storeid } = e.currentTarget.dataset;
     this.setData({
@@ -500,15 +420,7 @@ Page({
     });
   },
 
-  handleCouponList(storeCouponList) {
-    //处理门店优惠券   转换成接口需要
-    if (!storeCouponList) return [];
-    const resSubmitCouponList = [];
-    storeCouponList.forEach((ele) => {
-      resSubmitCouponList.push(...ele.couponList);
-    });
-    return resSubmitCouponList;
-  },
+  handleCouponList(storeCouponList) {},
 
   onGoodsNumChange(e) {
     const {

@@ -1,12 +1,6 @@
-import {
-  getSearchHistory,
-  getSearchPopular,
-} from '../../../services/good/fetchSearchHistory';
-
 Page({
   data: {
     historyWords: [],
-    popularWords: [],
     searchValue: '',
     dialog: {
       title: '确认删除当前历史记录',
@@ -21,34 +15,14 @@ Page({
 
   onShow() {
     this.queryHistory();
-    this.queryPopular();
   },
 
   async queryHistory() {
     try {
-      const data = await getSearchHistory();
-      const code = 'Success';
-      if (String(code).toUpperCase() === 'SUCCESS') {
-        const { historyWords = [] } = data;
-        this.setData({
-          historyWords,
-        });
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  },
-
-  async queryPopular() {
-    try {
-      const data = await getSearchPopular();
-      const code = 'Success';
-      if (String(code).toUpperCase() === 'SUCCESS') {
-        const { popularWords = [] } = data;
-        this.setData({
-          popularWords,
-        });
-      }
+      const historyWords = ['大米店铺', '窑鸡王', '乡村基', '麦当劳'];
+      this.setData({
+        historyWords,
+      });
     } catch (error) {
       console.error(error);
     }

@@ -44,17 +44,7 @@
   text-overflow: ellipsis;
 }
 
-.popup-sku-header .popup-sku-header__goods-info .popup-sku__selected-spec {
-  display: flex;
-  color: #333333;
-  font-size: 26rpx;
-  line-height: 36rpx;
-}
-
-.popup-sku-header
-  .popup-sku-header__goods-info
-  .popup-sku__selected-spec
-  .popup-sku__selected-item {
+.popup-sku-header .popup-sku-header__goods-info .popup-sku__selected-item {
   margin-right: 10rpx;
 }
 

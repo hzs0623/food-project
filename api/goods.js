@@ -1,84 +1,14 @@
 import http from './http';
 
 const cateListMock = [
-  {
-    groupId: '249480',
-    name: '卫衣',
-    thumbnail: 'https://cdn-we-retail.ym.tencent.com/tsr/classify/img-1.png',
-  },
-  {
-    groupId: '249480',
-    name: '毛呢外套',
-    thumbnail: 'https://cdn-we-retail.ym.tencent.com/tsr/classify/img-2.png',
-  },
-  {
-    groupId: '249480',
-    name: '雪纺衫',
-    thumbnail: 'https://cdn-we-retail.ym.tencent.com/tsr/classify/img-3.png',
-  },
-  {
-    groupId: '249480',
-    name: '羽绒服',
-    thumbnail: 'https://cdn-we-retail.ym.tencent.com/tsr/classify/img-4.png',
-  },
-  {
-    groupId: '249480',
-    name: '毛衣',
-    thumbnail: 'https://cdn-we-retail.ym.tencent.com/tsr/classify/img-5.png',
-  },
-  {
-    groupId: '249480',
-    name: '棉衣',
-    thumbnail: 'https://cdn-we-retail.ym.tencent.com/tsr/classify/img-6.png',
-  },
-  {
-    groupId: '249480',
-    name: '西装',
-    thumbnail: 'https://cdn-we-retail.ym.tencent.com/tsr/classify/img-7.png',
-  },
-  {
-    groupId: '249480',
-    name: '马甲',
-    thumbnail: 'https://cdn-we-retail.ym.tencent.com/tsr/classify/img-8.png',
-  },
-  {
-    groupId: '249480',
-    name: '连衣裙',
-    thumbnail: 'https://cdn-we-retail.ym.tencent.com/tsr/classify/img-9.png',
-  },
-  {
-    groupId: '249480',
-    name: '半身裙',
-    thumbnail: 'https://cdn-we-retail.ym.tencent.com/tsr/classify/img-10.png',
-  },
-  {
-    groupId: '249480',
-    name: '裤子',
-    thumbnail: 'https://cdn-we-retail.ym.tencent.com/tsr/classify/img-11.png',
-  },
-];
-
-const swipreMock = [
-  {
-    fileUrl: 'https://cdn-we-retail.ym.tencent.com/tsr/home/v2/banner2.png',
-    text: '2',
-  },
-  {
-    fileUrl: 'https://cdn-we-retail.ym.tencent.com/tsr/home/v2/banner3.png',
-    text: '3',
-  },
-  {
-    fileUrl: 'https://cdn-we-retail.ym.tencent.com/tsr/home/v2/banner4.png',
-    text: '4',
-  },
-  {
-    fileUrl: 'https://cdn-we-retail.ym.tencent.com/tsr/home/v2/banner5.png',
-    text: '5',
-  },
-  {
-    fileUrl: 'https://cdn-we-retail.ym.tencent.com/tsr/home/v2/banner6.png',
-    text: '6',
-  },
+  'https://p0.meituan.net/wmbanner/c6213db2a0bbc6b7342074e9eb51ca4a12844.png',
+  'https://p0.meituan.net/wmbanner/8934983cf94fee9b898ffb66316d312d6588.png',
+  'https://p0.meituan.net/wmbanner/931b4bfa92a37d0f8c42b846f7d7c3b310738.png',
+  'https://p0.meituan.net/wmbanner/84154e5477cc35b12d0e31d55924edb916525.png',
+  'https://p1.meituan.net/wmbanner/f00b85ea857955357718c0120e39eda613072.png',
+  'https://p0.meituan.net/wmbanner/a21e2929ba2fa539323ef830260e9fd214345.png',
+  'https://p1.meituan.net/wmbanner/fee33972115b6dbc8f0450c9c015712b16444.png',
+  'https://p1.meituan.net/wmbanner/f00b85ea857955357718c0120e39eda613072.png',
 ];
 
 const isReverse = () => getApp().globalData.reverse;
@@ -93,7 +23,7 @@ export const getCateList = async (data = {}) => {
     return {
       ...item,
       name: item.categoryName || item.wcategoryName,
-      img: cateListMock[index].thumbnail,
+      img: cateListMock[index] || '',
     };
   });
 
@@ -101,11 +31,19 @@ export const getCateList = async (data = {}) => {
 };
 
 export const getHomeSwipre = async ({ type = 1 } = {}) => {
-  return swipreMock;
   const { data: list = [] } = await http({
     url: '/slideshow/list',
     method: 'post',
     data: { type },
+  });
+
+  const listImg = [
+    `https://p1.meituan.net/wmbanner/2700e2ab1b3f298046dc16718ade6ec3128659.gif@602w`,
+    `https://p0.meituan.net/wmbanner/0acea4ba5704d56f13d78ad175b2cc5538158.png@602w`,
+  ];
+
+  list.forEach((item, i) => {
+    item.fileUrl = (listImg[i] && listImg[i]) || listImg[0];
   });
 
   return isReverse ? list.reverse() : list;

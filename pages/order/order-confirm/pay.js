@@ -9,7 +9,6 @@ export const commitPay = (params) => {
     goodsRequestList: params.goodsRequestList, // 待结算的商品集合
     invoiceRequest: params.invoiceRequest, // 发票信息
     // isIgnore: params.isIgnore || false, // 删掉 是否忽视库存不足和商品失效,继续结算,true=继续结算 购物车请赋值false
-    userAddressReq: params.userAddressReq, // 地址信息(用户在购物选择更换地址)
     currency: params.currency || 'CNY', // 支付货币: 人民币=CNY，美元=USD
     logisticsType: params.logisticsType || 1, // 配送方式 0=无需配送 1=快递 2=商家 3=同城 4=自提
     // orderMark: params.orderMark, // 下单备注
@@ -19,8 +18,6 @@ export const commitPay = (params) => {
     userName: params.userName, // 用户名
     payWay: 1,
     authorizationCode: '', //loginCode, // 登录凭证
-    storeInfoList: params.storeInfoList, //备注信息列表
-    couponList: params.couponList,
     groupInfo: params.groupInfo,
   });
 };

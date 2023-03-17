@@ -11,7 +11,7 @@ function request(option = {}) {
     }
     const config = Object.assign(
       {
-        timeout: 20000, // 超时时间 20000ms
+        timeout: 2000, // 超时时间 2000ms
         method: 'GET', // 请求方式 默认get
         data: {}, // 请求参数
         header: {

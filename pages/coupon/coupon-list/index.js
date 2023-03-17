@@ -17,8 +17,6 @@ Page({
         key: 2,
       },
     ],
-
-    couponList: [],
   },
 
   onLoad() {
@@ -48,9 +46,6 @@ Page({
         throw new Error(`unknown fetchStatus: ${statusInFetch}`);
       }
     }
-    fetchCouponList(statusInFetch).then((couponList) => {
-      this.setData({ couponList });
-    });
   },
 
   tabChange(e) {
@@ -65,13 +60,8 @@ Page({
   },
 
   onPullDownRefresh_() {
-    this.setData(
-      {
-        couponList: [],
-      },
-      () => {
-        this.fetchList();
-      },
-    );
+    this.setData({}, () => {
+      this.fetchList();
+    });
   },
 });

@@ -93,7 +93,7 @@ const orderResps = [
       boughtQuantity: 1,
       orderNo: '132222623132329291',
       goodsInfo: {
-        goodsName: '腾讯极光盒子4智能网络电视机顶盒6K千兆网络机顶盒4K高分辨率',
+        goodsName: '人工午餐',
         skuImage: 'https://cdn-we-retail.ym.tencent.com/tsr/goods/dz-3a.png',
         specInfo: [
           {

@@ -9,9 +9,9 @@ Component({
     price: {
       type: null,
       value: '',
-      observer(price) {
-        this.format(price);
-      },
+      // observer(price) {
+      //   this.format(price);
+      // },
     }, // 价格, 以分为单位
     type: {
       type: String,

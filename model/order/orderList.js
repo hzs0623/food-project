@@ -44,8 +44,7 @@ export function genOrders(params) {
               roomId: null,
               goodsMainType: 0,
               goodsViceType: 0,
-              goodsName:
-                '腾讯极光盒子4智能网络电视机顶盒6K千兆网络机顶盒4K高分辨率',
+              goodsName: '人工午餐',
               specifications: [
                 { specTitle: '颜色', specValue: '贵族青' },
                 { specTitle: '类型', specValue: '尊享礼盒装' },
@@ -400,8 +399,7 @@ export function genOrders(params) {
               roomId: null,
               goodsMainType: 0,
               goodsViceType: 0,
-              goodsName:
-                '腾讯极光盒子4智能网络电视机顶盒6K千兆网络机顶盒4K高分辨率',
+              goodsName: '人工午餐',
               goodsPictureUrl:
                 'https://cdn-we-retail.ym.tencent.com/tsr/goods/dz-3a.png',
               originPrice: '16900',

@@ -21,20 +21,18 @@
 
 		<view class="goods-info">
 			<view class="goods-title">
-				<view class="goods-name">{{details.title}}</view>
+				<view class="goods-name">{{details.couponName}}</view>
 			</view>
 
 			<view class="goods-number">
-
 				<view class="goods-price">
 					<price
 					  wr-class="class-goods-price"
 					  symbol-class="class-goods-symbol"
-					  price="{{minSalePrice}}"
+					  price="{{actualCouponPrice}}"
 					  type="lighter"
 					/>
-					<view class="goods-price-up">起</view>
-					<price wr-class="class-goods-del" price="{{maxLinePrice}}" type="delthrough" />
+					<price wr-class="class-goods-del" price="{{costCouponPrice}}" type="delthrough" />
 				</view>
 				<view class="sold-num">已售{{soldNum}}</view>
 			</view>
@@ -44,7 +42,7 @@
 				<view class="tags-container">
 					<view
 					  wx:for="{{activityList}}"
-					  data-promotionId="{{item.promotionId}}"
+					  data-id="{{item.id}}"
 					  wx:key="index"
 					  wx:if="{{index<4}}"
 					>
@@ -57,7 +55,7 @@
 
 
 	<view class="desc-content">
-			<span class="desc-content-text">店铺信息</span>
+			<view class="desc-border"></view>
 			<view class="desc-content-inner">
 				<view class="desc-content-title">
 					牛仔店铺（西丽店铺）
@@ -72,9 +70,9 @@
 						gap="2"
 					/>
 
-					<view class="pl-30 text-normal">$80/人</view>
+					<view class="text-normal">$80/人</view>
 
-					<view class="pl-30 text-normal">西丽 4.7km</view>
+					<view class="text-normal">西丽 4.7km</view>
 				</view>
 
 				<view class="desc-content-time"> 休息中 11:00-12:00 </view>
@@ -107,10 +105,8 @@
 	<goods-specs-popup
 	  id="goodsSpecsPopup"
 	  show="{{isSpuSelectPopupShow}}"
-	  title="{{details.title || ''}}"
-	  src="{{specImg ? specImg : primaryImage}}"
-	  specList="{{details.specList || []}}"
-	  skuList="{{skuArray}}"
+	  title="{{details.couponName || ''}}"
+	  src="{{fileUrl}}"
 	  limitBuyInfo="{{details.limitInfo[0].text || ''}}"
 	  bind:closeSpecsPopup="handlePopupHide"
 	  bind:change="chooseSpecItem"
@@ -124,14 +120,14 @@
 		<view slot="goods-price">
 			<view class="popup-sku__price">
 				<price
-				  wx:if="{{!isAllSelectedSku || (!promotionSubCode && isAllSelectedSku)}}"
-				  price="{{selectSkuSellsPrice ? selectSkuSellsPrice : minSalePrice }}"
+				  wx:if="{{!promotionSubCode}}"
+				  price="{{actualCouponPrice }}"
 				  wr-class="popup-sku__price-num"
 				  symbol-class="popup-sku__price-symbol"
 				/>
 				<price
-				  wx:if="{{selectSkuSellsPrice === 0 && minSalePrice !== maxSalePrice && !isAllSelectedSku}}"
-				  price="{{maxSalePrice}}"
+				  wx:if="{{actualCouponPrice !== costCouponPrice}}"
+				  price="{{costCouponPrice}}"
 				  wr-class="popup-sku__price-del"
 				  type="delthrough"
 				/>

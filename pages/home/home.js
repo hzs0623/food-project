@@ -1,9 +1,10 @@
-import { fetchGoodsList } from '../../services/good/fetchGoods';
+// import { fetchGoodsList } from '../../services/good/fetchGoods';
 import Toast from 'tdesign-miniprogram/toast/index';
 import { I18nPage } from '../../i18n/core/index';
 
 import { getCateList, getHomeSwipre } from '../../api/goods';
-import { login } from '../../api/login/index';
+import { getCouponList } from '../../api/coupon';
+// import { login } from '../../api/login/index'; // 登录页登录
 
 I18nPage({
   data: {
@@ -33,7 +34,7 @@ I18nPage({
   onLoad() {
     this.init();
 
-    login();
+    // login();
   },
 
   // 请求下一页数据
@@ -97,7 +98,7 @@ I18nPage({
     });
 
     try {
-      const nextList = await fetchGoodsList(
+      const nextList = await getCouponList(
         this.goodListPagination.pageIndex,
         this.goodListPagination.pageSize,
       );
@@ -112,20 +113,10 @@ I18nPage({
     }
   },
 
-  goodListClickHandle(e) {
+  onClickDetails(e) {
     const { index } = e.detail;
-    const { spuId } = this.data.goodsList[index];
-    wx.navigateTo({
-      url: `/pages/goods/details/index?spuId=${spuId}`,
-    });
-  },
-
-  goodListAddCartHandle() {
-    Toast({
-      context: this,
-      selector: '#t-toast',
-      message: '点击加入购物车',
-    });
+    const { id } = this.data.goodsList[index];
+    wx.navigateTo({ url: `/pages/goods/details/index?id=${id}` });
   },
 
   navToSearchPage() {
@@ -134,11 +125,18 @@ I18nPage({
     });
   },
 
-  navToActivityDetail({ detail }) {
-    const { index: promotionID = 0 } = detail || {};
-    wx.navigateTo({
-      url: `/pages/promotion-detail/index?promotion_id=${promotionID}`,
+  navToActivityDetail(e) {
+    const item = this.data.imgSrcs[e.target.dataset.index];
+    console.log(item, '点击轮播图详情');
+    Toast({
+      context: this,
+      selector: '#t-toast',
+      message: '轮播图详情接口还未完成',
     });
+    // const { index: promotionID = 0 } = detail || {};
+    // wx.navigateTo({
+    //   url: `/pages/promotion-detail/index?promotion_id=${promotionID}`,
+    // });
   },
 
   // 切换多语言, 重新请求过数据
@@ -154,16 +152,22 @@ I18nPage({
     });
   },
 
+  // 选择完地址触发
   selectCity(value) {
     console.log(value);
   },
 
   // 分类页
-  skipCatePage(e) {
-    console.log(e);
-    const spuId = 1234;
-    wx.navigateTo({
-      url: `/pages/categories/index?spuId=${spuId}`,
-    });
+  skipCatePage({ detail = {} } = {}) {
+    const { index, item } = detail;
+    console.log(item);
+
+    const id = item.id;
+    if (item.children && item.children.length) {
+      // 调到二级列表
+      wx.navigateTo({ url: `/pages/categories/index?id=${id}` });
+    } else {
+      wx.navigateTo({ url: `/pages/goods/details/index?id=${id}` }); // 跳转商详
+    }
   },
 });

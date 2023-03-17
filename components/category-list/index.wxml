@@ -1,13 +1,14 @@
 <view class="{{ reverse ? 'category-comp-ar' : 'category-comp'}}">
   <view class="category-comp-inner">
   	<block wx:for="{{goodsList}}" wx:for-item="item" wx:key="index"> 
-      <view class="category-comp-item" bind:tap="onTab">
+      <view class="category-comp-item" data-item="{{ item }}" data-index="{{ index }}" bind:tap="onClick">
         <t-image
           wx:if="{{ !!item.img }}"
           t-class="category-comp-inner__img"
           src="{{ item.img }}"
           mode="aspectFill"
           lazy-load
+          data-item="{{ item }}" data-index="{{ index }}"
         />
         {{ item.name }}
       </view>

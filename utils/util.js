@@ -122,6 +122,15 @@ const phoneRegCheck = (phone) => {
   return phoneRegExp.test(phone);
 };
 
+const obj2Params = (obj = {}, encode = false) => {
+  const result = [];
+  Object.keys(obj).forEach((key) =>
+    result.push(`${key}=${encode ? encodeURIComponent(obj[key]) : obj[key]}`),
+  );
+
+  return result.join('&');
+};
+
 module.exports = {
   formatTime,
   priceFormat,
@@ -130,4 +139,5 @@ module.exports = {
   rpx2px,
   phoneEncryption,
   phoneRegCheck,
+  obj2Params,
 };

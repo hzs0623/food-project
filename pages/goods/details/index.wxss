@@ -13,23 +13,16 @@
 }
 .goods-detail-page .goods-info {
   margin: 0 auto;
-  padding: 26rpx 0 28rpx 30rpx;
+  padding: 30rpx;
   background-color: #fff;
 }
 .goods-detail-page .swipe-img {
   width: 100%;
-  height: 750rpx;
+  height: 100%;
 }
 .goods-detail-page .goods-info .goods-price {
   display: flex;
   align-items: baseline;
-}
-.goods-detail-page .goods-info .goods-price-up {
-  color: #fa4126;
-  font-size: 28rpx;
-  position: relative;
-  bottom: 4rpx;
-  left: 8rpx;
 }
 .goods-detail-page .goods-info .goods-price .class-goods-price {
   font-size: 64rpx;
@@ -132,17 +125,18 @@
 }
 .goods-detail-page .desc-content {
   margin-top: 20rpx;
-  padding-bottom: 120rpx;
+  padding-bottom: 80rpx;
+  font-size: 12px;
+  color: #333333;
 }
-.goods-detail-page .desc-content-text {
-  padding-left: 10rpx;
-  font-size: 32rpx;
-  line-height: 88rpx;
-  font-weight: 600;
+.goods-detail-page .desc-border {
+  height: 1px;
+  width: 100%;
+  background-color: #f1f1f1;
 }
 .goods-detail-page .desc-content-inner {
   position: relative;
-  padding: 20rpx 36rpx 0 36rpx;
+  padding: 30rpx;
   background-color: #fff;
 }
 .goods-detail-page .desc-content-inner .desc-content-call {
@@ -156,9 +150,13 @@
 }
 .goods-detail-page .desc-content-info {
   display: flex;
+  align-items: center;
+}
+.goods-detail-page .desc-content-info .text-normal {
+  padding: 8rpx;
 }
 .goods-detail-page .goods-head .t-swiper {
-  height: 750rpx !important;
+  height: 600rpx !important;
 }
 page {
   width: 100vw;
@@ -306,23 +304,16 @@ page {
 }
 .goods-detail-page-ar .goods-info {
   margin: 0 auto;
-  padding: 26rpx 0 28rpx 30rpx;
+  padding: 30rpx;
   background-color: #fff;
 }
 .goods-detail-page-ar .swipe-img {
   width: 100%;
-  height: 750rpx;
+  height: 100%;
 }
 .goods-detail-page-ar .goods-info .goods-price {
   display: flex;
   align-items: baseline;
-}
-.goods-detail-page-ar .goods-info .goods-price-up {
-  color: #fa4126;
-  font-size: 28rpx;
-  position: relative;
-  bottom: 4rpx;
-  right: 8rpx;
 }
 .goods-detail-page-ar .goods-info .goods-price .class-goods-price {
   font-size: 64rpx;
@@ -425,17 +416,18 @@ page {
 }
 .goods-detail-page-ar .desc-content {
   margin-top: 20rpx;
-  padding-bottom: 120rpx;
+  padding-bottom: 80rpx;
+  font-size: 12px;
+  color: #333333;
 }
-.goods-detail-page-ar .desc-content-text {
-  padding-right: 10rpx;
-  font-size: 32rpx;
-  line-height: 88rpx;
-  font-weight: 600;
+.goods-detail-page-ar .desc-border {
+  height: 1px;
+  width: 100%;
+  background-color: #f1f1f1;
 }
 .goods-detail-page-ar .desc-content-inner {
   position: relative;
-  padding: 20rpx 36rpx 0 36rpx;
+  padding: 30rpx;
   background-color: #fff;
 }
 .goods-detail-page-ar .desc-content-inner .desc-content-call {
@@ -449,9 +441,13 @@ page {
 }
 .goods-detail-page-ar .desc-content-info {
   display: flex;
+  align-items: center;
+}
+.goods-detail-page-ar .desc-content-info .text-normal {
+  padding: 8rpx;
 }
 .goods-detail-page-ar .goods-head .t-swiper {
-  height: 750rpx !important;
+  height: 600rpx !important;
 }
 page {
   width: 100vw;

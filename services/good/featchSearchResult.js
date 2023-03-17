@@ -11,10 +11,10 @@ function mockSearchResult(params) {
   if (data.spuList.length) {
     data.spuList.forEach((item) => {
       item.spuId = item.spuId;
-      item.thumb = item.primaryImage;
+      item.thumb = item.fileUrl;
       item.title = item.title;
-      item.price = item.minSalePrice;
-      item.originPrice = item.maxLinePrice;
+      item.price = item.actualCouponPrice;
+      item.originPrice = item.costCouponPrice;
       if (item.spuTagList) {
         item.tags = item.spuTagList.map((tag) => ({ title: tag.title }));
       } else {

@@ -32,7 +32,7 @@ Component({
       type: String,
       value: '',
     },
-    minSalePrice: {
+    actualCouponPrice: {
       type: String,
       value: '',
     },

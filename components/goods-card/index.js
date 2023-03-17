@@ -55,6 +55,7 @@ Component({
     ready() {
       this.init();
     },
+    // 在页面移除
     detached() {
       this.clear();
     },
@@ -65,21 +66,6 @@ Component({
   methods: {
     clickHandle() {
       this.triggerEvent('click', { goods: this.data.goods });
-    },
-
-    clickThumbHandle() {
-      this.triggerEvent('thumb', { goods: this.data.goods });
-    },
-
-    addCartHandle(e) {
-      const { id } = e.currentTarget;
-      const { id: cardID } = e.currentTarget.dataset;
-      this.triggerEvent('add-cart', {
-        ...e.detail,
-        id,
-        cardID,
-        goods: this.data.goods,
-      });
     },
 
     genIndependentID(id) {

@@ -41,22 +41,6 @@ Component({
       });
     },
 
-    onAddCart(e) {
-      const { index } = e.currentTarget.dataset;
-      this.triggerEvent('addcart', {
-        ...e.detail,
-        index,
-      });
-    },
-
-    onClickGoodsThumb(e) {
-      const { index } = e.currentTarget.dataset;
-      this.triggerEvent('thumb', {
-        ...e.detail,
-        index,
-      });
-    },
-
     init() {
       this.genIndependentID(this.id || '');
     },

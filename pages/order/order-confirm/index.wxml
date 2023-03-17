@@ -1,9 +1,6 @@
 <wxs module="order" src="./order.wxs" />
 
-<wxs module="handleInvoice" src="./handleInvoice.wxs" />
-<wxs module="getNotes" src="./getNotes.wxs" />
 <view class="order-sure" wx:if="{{!loading}}">
-	<!-- <address-card addressData="{{userAddress}}" bind:addclick="onGotoAddress" bind:addressclick="onGotoAddress" /> -->
 	<view
 	 class="order-wrapper"
 	 wx:for="{{settleDetailData.storeGoodsList}}"
@@ -54,22 +51,9 @@
 			</view>
 		</view>
 		<view class="pay-item">
-			<text>优惠券</text>
-			<view class="pay-item__right" data-storeid="{{settleDetailData.storeGoodsList[0].storeId}}" catchtap="onOpenCoupons">
-				<block wx:if="{{submitCouponList.length}}">
-          <block wx:if="{{settleDetailData.totalCouponAmount && settleDetailData.totalCouponAmount !== '0'}}">
-            -<price fill decimalSmaller price="{{settleDetailData.totalCouponAmount}}" />
-          </block>
-          <block wx:else>选择优惠券</block>
-				</block>
-				<text wx:else>无可用</text>
-				<t-icon name="chevron-right" size="32rpx" color="#BBBBBB" />
-			</view>
-		</view>
-		<view class="pay-item">
 			<text>订单备注</text>
 			<view class="pay-item__right" data-storenoteindex="{{0}}" catchtap="onNotes">
-				<text class="pay-remark">{{getNotes(storeInfoList, 0) ? getNotes(storeInfoList, 0) :'选填，建议先和商家沟通确认'}}</text>
+				<text class="pay-remark">选填，建议先和商家沟通确认</text>
 				<t-icon name="chevron-right" size="32rpx" color="#BBBBBB" />
 			</view>
 		</view>
@@ -116,7 +100,7 @@
 		 focus="{{dialogShow}}"
 		 class="notes"
 		 t-class="add-notes__textarea"
-		 value="{{storeInfoList[storeNoteIndex] && storeInfoList[storeNoteIndex].remark}}"
+		 value="xxxx"
 		 placeholder="备注信息"
 		 t-class-textarea="add-notes__textarea__font"
 		 bindfocus="onFocus"
@@ -131,7 +115,6 @@
 	<select-coupons
 	 bind:sure="onCoupons"
 	 storeId="{{currentStoreId}}"
-	 orderSureCouponList="{{couponList}}"
 	 promotionGoodsList="{{promotionGoodsList}}"
 	 couponsShow="{{couponsShow}}"
 	/>

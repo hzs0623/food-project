@@ -23,7 +23,7 @@
   flex-shrink: 0;
   position: relative;
   width: 340rpx;
-  height: 340rpx;
+  height: 320rpx;
 }
 
 .goods-card__thumb:empty {
@@ -44,7 +44,7 @@
   flex: 1 1 auto;
   background: #fff;
   border-radius: 0 0 16rpx 16rpx;
-  padding: 16rpx 24rpx 18rpx;
+  padding: 16rpx 0;
   flex-direction: column;
 }
 
@@ -117,6 +117,7 @@
 }
 
 .spec-for-price {
+  padding-right: 10rpx;
   font-size: 36rpx;
   white-space: nowrap;
   font-weight: 700;

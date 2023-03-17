@@ -13,9 +13,9 @@
 		  data-url="{{item.url}}"
 		>
 			<view>
-				<text wx:if="{{shopCartNum > 0 && item.showCartNum}}" class="tag-cart-num">
+				<view wx:if="{{shopCartNum > 0 && item.showCartNum}}" class="tag-cart-num">
 					{{shopCartNum > 99 ? '99+' : shopCartNum}}
-				</text>
+				</view>
 				<t-icon prefix="wr" name="{{item.iconName}}" size="40rpx" />
 				<view class="operate-text">{{item.title}}</view>
 			</view>

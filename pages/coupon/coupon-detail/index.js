@@ -3,7 +3,6 @@ import { fetchCouponDetail } from '../../../services/coupon/index';
 Page({
   data: {
     detail: null,
-    storeInfoList: [],
     storeInfoStr: '',
     showStoreInfoList: false,
   },

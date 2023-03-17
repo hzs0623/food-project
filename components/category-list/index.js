@@ -17,8 +17,8 @@ Component({
   data: {},
 
   methods: {
-    onTab(e) {
-      this.triggerEvent('changeCate', e);
+    onClick(e) {
+      this.triggerEvent('click', e.target.dataset);
     },
   },
 });
