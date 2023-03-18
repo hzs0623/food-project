@@ -143,6 +143,12 @@
           "pathName": "pages/store-detail/index",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "示例页-订单页",
+          "pathName": "pages/new-order/order-confirm/index",
+          "query": "",
+          "scene": null
         }
       ]
     }

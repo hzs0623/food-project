@@ -6,5 +6,12 @@ Component({
       value: {},
     },
   },
-  methods: {},
+  methods: {
+    onClick() {
+      const { id, storeId } = this.properties.item;
+      wx.navigateTo({
+        url: `/pages/goods/details/index?id=${id}&storeId=${storeId}`,
+      });
+    },
+  },
 });

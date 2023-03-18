@@ -75,7 +75,7 @@
 }
 .wr-goods-card__desc {
   font-size: 24rpx;
-  color: #f5f5f5;
+  color: #999;
   line-height: 40rpx;
   display: -webkit-box;
   -webkit-box-orient: vertical;

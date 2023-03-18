@@ -1,0 +1,13 @@
+{
+  "navigationBarTitleText": "订单确认",
+  "usingComponents": {
+    "t-popup": "tdesign-miniprogram/popup/popup",
+    "t-toast": "tdesign-miniprogram/toast/toast",
+    "t-icon": "tdesign-miniprogram/icon/icon",
+    "t-cell": "tdesign-miniprogram/cell/cell",
+    "t-dialog": "tdesign-miniprogram/dialog/dialog",
+    "t-textarea": "tdesign-miniprogram/textarea/textarea",
+    "t-image": "/components/webp-image/index",
+    "price": "/components/price/index"
+  }
+}

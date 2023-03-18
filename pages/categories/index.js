@@ -1,5 +1,5 @@
 import { I18nPage } from '../../i18n/core/index';
-import { fetchGoodsList } from '../../services/good/fetchGoods';
+import { getCouponList } from '../../api/coupon';
 
 I18nPage({
   data: {
@@ -13,11 +13,11 @@ I18nPage({
       { label: '游泳', value: '12324' },
     ],
     images: [
-      `https://cdn-we-retail.ym.tencent.com/tsr/goods/gh-1a.png`,
-      `https://cdn-we-retail.ym.tencent.com/tsr/goods/gh-1a.png`,
-      `https://cdn-we-retail.ym.tencent.com/tsr/goods/gh-1a.png`,
-      `https://cdn-we-retail.ym.tencent.com/tsr/goods/gh-1a.png`,
-      `https://cdn-we-retail.ym.tencent.com/tsr/goods/gh-1a.png`,
+      `https://p1.meituan.net/waimaipoi/c38342a5c665f1c6d9bd154d93d16d69690310.png`,
+      `https://p0.meituan.net/waimaipoi/ffbb64e08ebdf619929504ce2b74e113695983.png`,
+      `https://p1.meituan.net/waimaipoi/c38342a5c665f1c6d9bd154d93d16d69690310.png`,
+      `https://p0.meituan.net/waimaipoi/ffbb64e08ebdf619929504ce2b74e113695983.png`,
+      `https://p1.meituan.net/waimaipoi/c38342a5c665f1c6d9bd154d93d16d69690310.png`,
     ],
     current: 0,
     duration: 500, // 切换速度ms
@@ -44,7 +44,7 @@ I18nPage({
     const pageIndex = 0;
 
     try {
-      const nextList = await fetchGoodsList(pageIndex, pageSize);
+      const nextList = await getCouponList(pageIndex, pageSize);
       this.setData({
         goodsList: fresh ? nextList : this.data.goodsList.concat(nextList),
       });

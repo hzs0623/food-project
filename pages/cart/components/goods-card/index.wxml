@@ -23,6 +23,7 @@
 					<slot name="before-title" />
 					{{ goods.couponName }}
 				</view>
+				<view class="wr-goods-card__desc">x{{ goods.quantity || 1 }}</view>
 			</view>
 			
 			<view class="wr-goods-card__short_content">

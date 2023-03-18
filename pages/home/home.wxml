@@ -30,7 +30,6 @@
   <goods-list 
     wr-class="goods-list-container" 
     goodsList="{{goodsList}}"
-    bind:click="onClickDetails"
   />
 
   <load-more list-is-empty="{{!goodsList.length}}" status="{{goodsListLoadStatus}}" bind:retry="onReTry" />

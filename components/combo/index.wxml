@@ -1,6 +1,4 @@
-<view class="container">
-
-
+<view class="container" bindtap="onClick">
   <image src="{{item.image}}" />
 
   <view class="content">

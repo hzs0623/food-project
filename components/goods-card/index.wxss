@@ -7,6 +7,8 @@
 
 .goods-card__main {
   position: relative;
+  box-sizing: border-box;
+  width: 100%;
   display: flex;
   line-height: 1;
   padding: 0;
@@ -40,11 +42,12 @@
 }
 
 .goods-card__body {
+  box-sizing: border-box;
   display: flex;
-  flex: 1 1 auto;
+  width: 100%;
   background: #fff;
   border-radius: 0 0 16rpx 16rpx;
-  padding: 16rpx 0;
+  padding: 16rpx;
   flex-direction: column;
 }
 

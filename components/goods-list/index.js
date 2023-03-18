@@ -35,10 +35,14 @@ Component({
   methods: {
     onClickGoods(e) {
       const { index } = e.currentTarget.dataset;
-      this.triggerEvent('click', {
-        ...e.detail,
-        index,
+      const { id, storeId } = this.properties.goodsList[index];
+      wx.navigateTo({
+        url: `/pages/goods/details/index?id=${id}&storeId=${storeId}`,
       });
+      // this.triggerEvent('click', {
+      //   ...e.detail,
+      //   index,
+      // });
     },
 
     init() {

@@ -1,0 +1,103 @@
+<view class="new-order" wx:if="{{!loading}}">
+	<view
+	 class="order-wrapper"
+		wx:if="{{selectList.length > 0}}"
+		wx:for="{{selectList}}"
+		wx:for-item="goods"
+		wx:for-index="gIndex"
+		wx:key="id"
+	>
+		<view class="goods-wrapper">
+			<t-image src="{{goods.fileUrl}}" t-class="goods-image" mode="aspectFill" />
+			<view class="goods-content">
+				<view class="goods-title">{{goods.couponName}}</view>
+			</view>
+			<view class="goods-right">
+				<price
+				 wr-class="goods-price"
+				 price="{{goods.actualCouponPrice}}"
+				 fill="{{true}}"
+				 decimalSmaller
+				/>
+				<view class="goods-num">x{{goods.quantity || 1}}</view>
+			</view>
+		</view>
+	</view>
+
+
+	<view class="pay-detail">
+		<view class="pay-item">
+			<text>商品总额</text>
+			<price
+			 fill
+			 decimalSmaller
+			 wr-class="pay-item__right font-bold"
+			 price="{{totalSalePrice}}"
+			/>
+		</view>
+
+		<view class="pay-item">
+			<text>订单备注</text>
+			<view class="pay-item__right" data-storenoteindex="{{0}}" catchtap="onNotes">
+				<text class="pay-remark">选填备注信息</text>
+				<t-icon name="chevron-right" size="32rpx" color="#BBBBBB" />
+			</view>
+		</view>
+		
+	</view>
+	<view class="amount-wrapper">
+		<view class="pay-amount">
+			<text class="order-num">共{{totalGoodsCount}}件</text>
+			<text >小计</text>
+			<price
+			 class="total-price"
+			 price="{{totalPayAmount}}"
+			 fill="{{false}}"
+			 decimalSmaller
+			/>
+		</view>
+	</view>
+
+	<view class="wx-pay-cover">
+		<view class="wx-pay">
+			<price
+			 decimalSmaller
+			 fill
+			 class="price"
+			 price="{{totalPayAmount}}"
+			/>
+			<view class="submit-btn {{ settleType === 1 ? '':'btn-gray'}}" bindtap="submitOrder">
+				提交订单
+			</view>
+		</view>
+	</view>
+
+
+	<t-dialog
+	 t-class="add-notes"
+	 title="填写备注信息"
+	 visible="{{dialogShow}}"
+	 confirm-btn="确认"
+	 cancel-btn="取消"
+	 t-class-content="add-notes__content"
+	 t-class-confirm="add-notes__confirm"
+	 t-class-cancel="add-notes__placeholder"
+	 bindconfirm="onNoteConfirm"
+	 bindcancel="onNoteCancel"
+	>
+		<t-textarea
+		 slot="content"
+		 focus="{{dialogShow}}"
+		 class="notes"
+		 t-class="add-notes__textarea"
+		 value="{{ textareaContent }}"
+		 placeholder="备注信息"
+		 t-class-textarea="add-notes__textarea__font"
+		 maxlength="{{50}}"
+		/>
+	</t-dialog>
+</view>
+
+<t-toast id="t-toast" />
+<t-dialog id="t-dialog" t-class-confirm="dialog__button-confirm" />
+

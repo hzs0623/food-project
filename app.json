@@ -29,7 +29,8 @@
     "pages/usercenter/name-edit/index",
     "pages/categories/index",
     "pages/store/index",
-    "pages/store-detail/index"
+    "pages/store-detail/index",
+    "pages/new-order/order-confirm/index"
   ],
   "tabBar": {
     "custom": true,

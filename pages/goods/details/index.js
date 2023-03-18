@@ -91,16 +91,12 @@ I18nPage({
     this.handlePopupHide();
     const query = {
       quantity: buyNum,
-      storeId: this.data.details.storeId,
-      title: this.data.details.couponName,
-      price: this.data.details.actualCouponPrice,
-      fileUrl: this.data.details.fileUrl,
-      id: this.data.details.id,
+      ...this.data.details,
     };
     const urlQueryStr = obj2Params({
       selectList: JSON.stringify([query]),
     });
-    const url = `/pages/order/order-confirm/index${
+    const url = `/pages/new-order/order-confirm/index${
       urlQueryStr ? `?${urlQueryStr}` : ''
     }`;
     wx.navigateTo({ url });

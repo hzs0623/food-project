@@ -118,7 +118,7 @@ Page({
 
   // 点击结算按钮
   onToSettle() {
-    wx.setStorageSync('order.selectList', JSON.stringify(selectList));
-    wx.navigateTo({ url: '/pages/order/order-confirm/index?type=cart' });
+    wx.setStorageSync('order.selectList', JSON.stringify(this.data.selectList));
+    wx.navigateTo({ url: '/pages/new-order/order-confirm/index?type=cart' });
   },
 });
