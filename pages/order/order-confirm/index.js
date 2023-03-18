@@ -27,7 +27,7 @@ Page({
       titleType: '', // 发票抬头 1-公司 2-个人
       contentType: '', //发票内容 1-明细 2-类别
     },
-    goodsRequestList: [],
+    selectList: [],
     popupShow: false, // 不在配送范围 失效 库存不足 商品展示弹框
     notesPosition: 'center',
     storeNoteIndex: 0, //当前填写备注门店index
@@ -61,26 +61,26 @@ Page({
     this.setData({
       loading: true,
     });
-    const { goodsRequestList } = this;
-    this.handleOptionsParams({ goodsRequestList });
+    const { selectList } = this;
+    this.handleOptionsParams({ selectList });
   },
 
   // 处理不同情况下跳转到结算页时需要的参数
   handleOptionsParams(options) {
-    let goodsRequestList;
+    let selectList;
 
     if (options.type === 'cart') {
       // 从购物车跳转过来时，获取传入的商品列表数据
-      const goodsRequestListJson = wx.getStorageSync('order.goodsRequestList');
-      goodsRequestList = JSON.parse(goodsRequestListJson);
-    } else if (typeof options.goodsRequestList === 'string') {
-      goodsRequestList = JSON.parse(options.goodsRequestList);
+      const goodsRequestListJson = wx.getStorageSync('order.selectList');
+      selectList = JSON.parse(goodsRequestListJson);
+    } else if (typeof options.selectList === 'string') {
+      selectList = JSON.parse(options.selectList);
     }
 
-    this.goodsRequestList = goodsRequestList;
+    this.selectList = selectList;
 
     this.setData({ loading: false });
-    this.initData(goodsRequestList);
+    this.initData(selectList);
 
     // fetchSettleDetail(params).then(
     //   (res) => {
@@ -282,14 +282,14 @@ Page({
           });
         });
       const filterStoreGoodsList = this.getRequestGoodsList(storeGoodsList);
-      const goodsRequestList = filterOutGoodsList.concat(filterStoreGoodsList);
-      this.handleOptionsParams({ goodsRequestList });
+      const selectList = filterOutGoodsList.concat(filterStoreGoodsList);
+      this.handleOptionsParams({ selectList });
     }
   },
   // 提交订单
   submitOrder() {
     const { settleDetailData, invoiceData } = this.data;
-    const { goodsRequestList } = this;
+    const { selectList } = this;
 
     if (
       this.payLock ||
@@ -300,7 +300,7 @@ Page({
     }
     this.payLock = true;
     const params = {
-      goodsRequestList: goodsRequestList,
+      selectList: selectList,
       totalAmount: settleDetailData.totalPayAmount, //取优惠后的结算金额
       invoiceRequest: null,
     };
@@ -429,7 +429,7 @@ Page({
         dataset: { goods },
       },
     } = e;
-    const index = this.goodsRequestList.findIndex(
+    const index = this.selectList.findIndex(
       ({ storeId, spuId, skuId }) =>
         goods.storeId === storeId &&
         goods.spuId === spuId &&
@@ -437,10 +437,10 @@ Page({
     );
     if (index >= 0) {
       // eslint-disable-next-line no-confusing-arrow
-      const goodsRequestList = this.goodsRequestList.map((item, i) =>
+      const selectList = this.selectList.map((item, i) =>
         i === index ? { ...item, quantity: value } : item,
       );
-      this.handleOptionsParams({ goodsRequestList });
+      this.handleOptionsParams({ selectList });
     }
   },
 

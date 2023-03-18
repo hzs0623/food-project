@@ -1,10 +1,15 @@
 import Dialog from 'tdesign-miniprogram/dialog/index';
 import Toast from 'tdesign-miniprogram/toast/index';
-import { fetchCartGroupData } from '../../services/cart/cart';
+// import { fetchCartGroupData } from '../../services/cart/cart';
+import { getCouponList } from '../../api/coupon';
 
 Page({
   data: {
-    cartGroupData: null,
+    storeGoods: [],
+    isAllSelected: false, // 全选状态
+    totalAmount: 0, // 选择的总价格
+    totalGoodsNum: 0, // 选择的总数量
+    selectList: [], // 选择的商品
   },
 
   // 调用自定义tabbar的init函数，使页面与tabbar激活状态保持一致
@@ -16,101 +21,9 @@ Page({
     this.refreshData();
   },
 
-  refreshData() {
-    this.getCartGroupData().then((res) => {
-      let isEmpty = true;
-      const cartGroupData = res.data;
-      // 一些组件中需要的字段可能接口并没有返回，或者返回的数据结构与预期不一致，需要在此先对数据做一些处理
-      // 统计门店下加购的商品是否全选、是否存在缺货/无货
-      for (const store of cartGroupData.storeGoods) {
-        store.isSelected = true; // 该门店已加购商品是否全选
-        store.storeStockShortage = false; // 该门店已加购商品是否存在库存不足
-        if (!store.shortageGoodsList) {
-          store.shortageGoodsList = []; // 该门店已加购商品如果库存为0需单独分组
-        }
-        for (const activity of store.promotionGoodsList) {
-          activity.goodsPromotionList = activity.goodsPromotionList.filter(
-            (goods) => {
-              goods.originPrice = undefined;
-
-              // 统计是否有加购数大于库存数的商品
-              if (goods.quantity > goods.stockQuantity) {
-                store.storeStockShortage = true;
-              }
-              // 统计是否全选
-              if (!goods.isSelected) {
-                store.isSelected = false;
-              }
-              // 库存为0（无货）的商品单独分组
-              if (goods.stockQuantity > 0) {
-                return true;
-              }
-              store.shortageGoodsList.push(goods);
-              return false;
-            },
-          );
-
-          if (activity.goodsPromotionList.length > 0) {
-            isEmpty = false;
-          }
-        }
-        if (store.shortageGoodsList.length > 0) {
-          isEmpty = false;
-        }
-      }
-      cartGroupData.invalidGoodItems = cartGroupData.invalidGoodItems.map(
-        (goods) => {
-          goods.originPrice = undefined;
-          return goods;
-        },
-      );
-      cartGroupData.isNotEmpty = !isEmpty;
-      this.setData({ cartGroupData });
-    });
-  },
-
-  findGoods(spuId, skuId) {
-    let currentStore;
-    let currentActivity;
-    let currentGoods;
-    const { storeGoods } = this.data.cartGroupData;
-    for (const store of storeGoods) {
-      for (const activity of store.promotionGoodsList) {
-        for (const goods of activity.goodsPromotionList) {
-          if (goods.spuId === spuId && goods.skuId === skuId) {
-            currentStore = store;
-            currentActivity = currentActivity;
-            currentGoods = goods;
-            return {
-              currentStore,
-              currentActivity,
-              currentGoods,
-            };
-          }
-        }
-      }
-    }
-    return {
-      currentStore,
-      currentActivity,
-      currentGoods,
-    };
-  },
-
-  // 注：实际场景时应该调用接口获取购物车数据
-  getCartGroupData() {
-    const { cartGroupData } = this.data;
-    if (!cartGroupData) {
-      return fetchCartGroupData();
-    }
-    return Promise.resolve({ data: cartGroupData });
-  },
-
-  // 选择单个商品
-  // 注：实际场景时应该调用接口更改选中状态
-  selectGoodsService({ spuId, skuId, isSelected }) {
-    this.findGoods(spuId, skuId).currentGoods.isSelected = isSelected;
-    return Promise.resolve();
+  async refreshData() {
+    const storeGoods = await getCouponList();
+    this.setData({ storeGoods });
   },
 
   // 删除加购商品
@@ -126,7 +39,7 @@ Page({
       }
       return -1;
     }
-    const { storeGoods, invalidGoodItems } = this.data.cartGroupData;
+    const storeGoods = this.data.storeGoods;
     for (const store of storeGoods) {
       for (const activity of store.promotionGoodsList) {
         if (deleteGoods(activity.goodsPromotionList) > -1) {
@@ -137,77 +50,75 @@ Page({
         return Promise.resolve();
       }
     }
-    if (deleteGoods(invalidGoodItems) > -1) {
-      return Promise.resolve();
-    }
     return Promise.reject();
   },
 
-  onGoodsSelect(e) {
-    const {
-      goods: { spuId, skuId },
-      isSelected,
-    } = e.detail;
-    const { currentGoods } = this.findGoods(spuId, skuId);
-    Toast({
-      context: this,
-      selector: '#t-toast',
-      message: `${isSelected ? '选择' : '取消'}"${
-        currentGoods.title.length > 5
-          ? `${currentGoods.title.slice(0, 5)}...`
-          : currentGoods.title
-      }"`,
-      icon: '',
-    });
-    this.selectGoodsService({ spuId, skuId, isSelected }).then(() =>
-      this.refreshData(),
-    );
-  },
-
   goGoodsDetail(e) {
-    const { spuId, storeId } = e.detail.goods;
+    const { id, storeId } = e.detail.goods;
     wx.navigateTo({
-      url: `/pages/goods/details/index?spuId=${spuId}&storeId=${storeId}`,
+      url: `/pages/goods/details/index?id=${id}&storeId=${storeId}`,
     });
   },
 
   onGoodsDelete(e) {
-    const {
-      goods: { spuId, skuId },
-    } = e.detail;
+    const { goods } = e.detail;
+    console.log(goods);
     Dialog.confirm({
-      content: '确认删除该商品吗?',
+      content: '确认删除吗?',
       confirmBtn: '确定',
       cancelBtn: '取消',
     }).then(() => {
-      this.deleteGoodsService({ spuId, skuId }).then(() => {
-        Toast({ context: this, selector: '#t-toast', message: '商品删除成功' });
-        this.refreshData();
-      });
+      Toast({ context: this, selector: '#t-toast', message: '删除成功' });
+      this.refreshData();
     });
   },
 
-  /* 调用接口改变全选 */
+  onGoodsSelect(e) {
+    const { goods, isSelected } = e.detail;
+    const currentList = this.data.storeGoods.map((item) => {
+      if (item.id === goods.id) {
+        item.isSelected = isSelected;
+      }
+      return item;
+    });
+    const isAllSelected = this.data.storeGoods.every(
+      (item) => item.isSelected === true,
+    );
+    this.setData({ storeGoods: currentList, isAllSelected });
+    this.selectItems();
+  },
+
+  /* 全选 */
   onSelectAll(event) {
     const { isAllSelected } = event?.detail ?? {};
+    this.setData({
+      storeGoods: this.data.storeGoods.map((item) => {
+        item.isSelected = !isAllSelected;
+        return item;
+      }),
+    });
+    this.selectItems();
+  },
+
+  // 计算金额
+  selectItems() {
+    let totalAmount = 0;
+    let totalGoodsNum = 0;
+    let selectList = [];
+    this.data.storeGoods.forEach((item) => {
+      if (item.isSelected) {
+        totalAmount += item.actualCouponPrice;
+        totalGoodsNum += 1;
+        selectList.push(item);
+      }
+    });
+
+    this.setData({ totalAmount, totalGoodsNum, selectList });
   },
 
   // 点击结算按钮
   onToSettle() {
-    const goodsRequestList = [];
-    this.data.cartGroupData.storeGoods.forEach((store) => {
-      store.promotionGoodsList.forEach((promotion) => {
-        promotion.goodsPromotionList.forEach((m) => {
-          if (m.isSelected == 1) {
-            goodsRequestList.push(m);
-          }
-        });
-      });
-    });
-    wx.setStorageSync(
-      'order.goodsRequestList',
-      JSON.stringify(goodsRequestList),
-    );
+    wx.setStorageSync('order.selectList', JSON.stringify(selectList));
     wx.navigateTo({ url: '/pages/order/order-confirm/index?type=cart' });
   },
 });

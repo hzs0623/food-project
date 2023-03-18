@@ -10,17 +10,6 @@ Component({
     storeGoods: {
       type: Array,
       observer(storeGoods) {
-        for (const store of storeGoods) {
-          for (const activity of store.promotionGoodsList) {
-            for (const goods of activity.goodsPromotionList) {
-              goods.specs = goods.specInfo.map((item) => item.specValue); // 目前仅展示商品已选规格的值
-            }
-          }
-          for (const goods of store.shortageGoodsList) {
-            goods.specs = goods.specInfo.map((item) => item.specValue); // 目前仅展示商品已选规格的值
-          }
-        }
-
         this.setData({ _storeGoods: storeGoods });
       },
     },
@@ -39,7 +28,6 @@ Component({
 
   data: {
     shortageImg,
-    isShowSpecs: false,
     currentGoods: {},
     isShowToggle: false,
     _storeGoods: [],
@@ -60,10 +48,12 @@ Component({
 
     // 选中商品
     selectGoods(e) {
-      const { goods } = e.currentTarget.dataset;
+      const { goods, index } = e.currentTarget.dataset;
+      const isSelected = !goods.isSelected;
       this.triggerEvent('selectgoods', {
         goods,
-        isSelected: !goods.isSelected,
+        index,
+        isSelected,
       });
     },
 
@@ -102,31 +92,6 @@ Component({
       });
     },
 
-    // 去凑单/再逛逛
-    gotoBuyMore(e) {
-      const { promotion, storeId = '' } = e.currentTarget.dataset;
-      this.triggerEvent('gocollect', { promotion, storeId });
-    },
-
-    // 选中门店
-    // selectStore(e) {
-    //   const { storeIndex } = e.currentTarget.dataset;
-    //   const store = this.data.storeGoods[storeIndex];
-    //   const isSelected = !store.isSelected;
-    //   if (store.storeStockShortage && isSelected) {
-    //     Toast({
-    //       context: this,
-    //       selector: '#t-toast',
-    //       message: '部分商品库存不足',
-    //     });
-    //     return;
-    //   }
-    //   this.triggerEvent('selectstore', {
-    //     store,
-    //     isSelected,
-    //   });
-    // },
-
     // 展开/收起切换
     showToggle() {
       this.setData({
@@ -139,14 +104,7 @@ Component({
       this.isSpecsTap = true;
       const { goods } = e.currentTarget.dataset;
       this.setData({
-        isShowSpecs: true,
         currentGoods: goods,
-      });
-    },
-
-    hideSpecsPopup() {
-      this.setData({
-        isShowSpecs: false,
       });
     },
 

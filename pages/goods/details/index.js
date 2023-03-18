@@ -98,7 +98,7 @@ I18nPage({
       id: this.data.details.id,
     };
     const urlQueryStr = obj2Params({
-      goodsRequestList: JSON.stringify([query]),
+      selectList: JSON.stringify([query]),
     });
     const url = `/pages/order/order-confirm/index${
       urlQueryStr ? `?${urlQueryStr}` : ''

@@ -115,8 +115,10 @@ I18nPage({
 
   onClickDetails(e) {
     const { index } = e.detail;
-    const { id } = this.data.goodsList[index];
-    wx.navigateTo({ url: `/pages/goods/details/index?id=${id}` });
+    const { id, storeId } = this.data.goodsList[index];
+    wx.navigateTo({
+      url: `/pages/goods/details/index?id=${id}&storeId=${storeId}`,
+    });
   },
 
   navToSearchPage() {
